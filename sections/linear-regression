@@ -1,0 +1,10 @@
+\subsection{Linear regression}
+Linear regression can be used to fit a linear function onto a set of data points.
+In time series forecasting, it is used to fit a predictive model to a dataset of observed values over time.
+By minimizing the error between the input and target values, linear regression generates the most accurately fitted linear function that estimates the prediction values.
+Linear regression is highly explainable due to the semantics of how the model weighs the input features. 
+In other words, if the weight of an input feature is negative, then it is inversely proportional to the output.
+
+The primary the drawback of linear regression is the fact that is it assumes linearity between input and prediction values which is rarely the case in the real world.
+In addition, due to this linear assumption, linear regression is very sensitive to outliers as these greatly affect the resulting predictive model.
+Therefore, predictions may be quite inaccurate in various practical applications.
