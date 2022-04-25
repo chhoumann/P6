@@ -1,17 +1,15 @@
 \section{Introduction}
 \label{sec:intro}
-
-- General introduction to Cyber Physical Systems.
-- General introduction to forecasting, why it's interesting and what it's used for.
-- Different algorithms exist for time series forecasting, and what we would like to focus on.
-
 A cyber-physical system (CPS) is a computerized system where real world physical events or mechanisms are monitored or controlled through the application of computer algorithms.
 In a CPS, physical and software components work together in different spatial and temporal scales.
 
-In this paper, our goal is to do time series weather forecasting using different machine learning techniques. 
-The aim of this paper is to measure the performance of the various approaches for a specific dataset.
-% TODO: Specify innovation.
+An example of such a system is how large weather sensor networks work in correlation. These produce both local weather time series, but they also affect how data from other sensors are interpreted. This, in turn, produces multiple weather time series that are all correlated. Being able to accurately forecast the weather has a large impact on most other CPSs as well as most people's daily lives. Having an accurate forecasting model is necessary in order to be able to accurately identify trends and outliers as well as predicting the future behavior of the weather. Ultimately all of this is useful in both the day to day running of other CPSs, and also in predicting future possible climate changes. 
 
-A time series is a sequence of a recorded metric over regular intervals.
-Forecasting refers to the future values that this sequence will take.
-% TODO: Define time series mathematically.
+To generate a reliable time series weather forecasting model, we need a model that is able to account for the seasonality aspect of the weather and the variable attributes that affect the future. 
+This means that, in order to generate an accurate model, one must be able to take into account previous historical states when making predictions for the future. 
+
+Today, the state of the art methods in time series forecasting include methods such as autoregressive integrated moving average (ARIMA), recurrent neural networks (RNNs), long short term memory (LSTM) and gated neural networks
+(GRUs).
+However, more recently in the field of natural language processing (NLP), the transformer model[cite] has shown great potential and is able outperform the aforementioned methods.
+Because of this, we wish to compare the performance of the previously used methods to the more recent transformer model when performing univariate time series weather forecasting. Our goal is to determine whether this model is able to also outperform the previously used methods in time series forecasting.
+
