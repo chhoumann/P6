@@ -4,7 +4,7 @@ The final element in the ARIMA model, the I, is the differencing of observations
 
 \subsection{RNN models}
 Another approach to time series forecasting is the use of neural networks. A popular model is to use recurrent neural networks and derivations of this model. Recurrent neural networks are similar to feedforward networks, but have memory of the past which is achieved through a hidden state which is passed reccurently through from previous layer as input to the successing layer. This makes it capable of learning short patterns. 
-A primary issue with RNN’s are the vanishing gradient and the exploding gradient problem with longer patterns, which more powerful models seek to improve upon. \cite{AIModernApproach}\cite{hands-onML}
+A primary issue with RNNs are the vanishing gradient and the exploding gradient problem with longer patterns, which more powerful models seek to improve upon. \cite{AIModernApproach}\cite{hands-onML}
 
 \subsection{LSTM and GRU models}
 To combat the issues of the vanishing gradient and exploding gradient problem, the Long short-term memory (LSTM) model was introduced by Sepp Hochreiter et. al. The basic principle of this model is the ability to bridge time intervals across longer time steps, which is achieved through the maintenance, updating and filtering of information into a cell state, which propagates through the entire network \cite{LSTMPaper}. 
