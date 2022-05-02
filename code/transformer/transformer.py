@@ -20,36 +20,36 @@ def gen_trg_mask(length, device):
     return mask
 
 class Transformer(nn.Module):
-    def __init__(self, n_encoder_inputs, n_decoder_inputs, channels=512, dropout=0.1, lr=0.0001):
+    def __init__(self, n_encoder_inputs, n_decoder_inputs, d_model=512, dropout=0.1, lr=0.0001, nhead=8):
         super(Transformer, self).__init__()
 
         self.lr = lr
         self.dropout = dropout
 
-        self.input_pos_embedding = torch.nn.Embedding(1024, embedding_dim=channels)
-        self.target_pos_embedding = torch.nn.Embedding(1024, embedding_dim=channels)
+        self.input_pos_embedding = torch.nn.Embedding(1024, embedding_dim=d_model)
+        self.target_pos_embedding = torch.nn.Embedding(1024, embedding_dim=d_model)
 
         encoder_layer = nn.TransformerEncoderLayer(
-            d_model=channels,
-            nhead=8,
+            d_model=d_model,
+            nhead=nhead,
             dropout=self.dropout,
-            dim_feedforward=4 * channels
+            dim_feedforward=4 * d_model
         )
 
         decoder_layer = nn.TransformerDecoderLayer(
-            d_model=channels,
-            nhead=8,
+            d_model=d_model,
+            nhead=nhead,
             dropout=self.dropout,
-            dim_feedforward=4*channels
+            dim_feedforward=4 * d_model
         )
 
         self.encoder = torch.nn.TransformerEncoder(encoder_layer, num_layers=8)
         self.decoder = torch.nn.TransformerDecoder(decoder_layer, num_layers=8)
 
-        self.input_projection = Linear(n_encoder_inputs, channels)
-        self.output_projection = Linear(n_decoder_inputs, channels)
+        self.input_projection = Linear(n_encoder_inputs, d_model)
+        self.output_projection = Linear(n_decoder_inputs, d_model)
 
-        self.linear = Linear(channels, 1)
+        self.linear = Linear(d_model, 1)
 
         self.do = nn.Dropout(p=self.dropout)
 
