@@ -1,3 +1,5 @@
+import numpy as np
+
 import pandas as pd
 import pathlib
 import torch
@@ -17,13 +19,15 @@ def load_delhi_data() -> DataDict:
     train_series = pd.read_csv(
         train_file,
         parse_dates=["date"],
-        index_col="date"
+        index_col="date",
+        dtype=np.float32
     )["meantemp"]
 
     test_series = pd.read_csv(
         test_file,
         parse_dates=["date"],
-        index_col="date"
+        index_col="date",
+        dtype=np.float32
     )["meantemp"]
 
     lagged_train_df = series_to_df(pd.DataFrame(train_series), "meantemp", LAG)

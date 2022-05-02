@@ -1,13 +1,18 @@
 from data.get_data import DataType, get_data
 from transformer.transformer import Transformer
 
+import torch
+
 if __name__ == "__main__":
     print("Starting")
     data = get_data(DataType.delhi_small)
 
-    transformer = Transformer(n_encoder_inputs=8, n_decoder_inputs=9, d_model=512, nhead=8)
-    pred = transformer((data["X_train"], data["y_train"]))
+    transformer = Transformer(1452, 10)
+    # src = torch.LongTensor([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]).view(10, 1)
+    # print(data["X_train"][0].view(10, 1))
+    print(data["X_train"])
+    x = torch.tensor(data["X_train"]).to(torch.int64)
+    print(x)
+    # transformer(x)
+    # print(pred)
 
-    print(pred)
-
-    #print(data["X_train"])
