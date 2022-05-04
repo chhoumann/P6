@@ -29,7 +29,7 @@ The next output vector has a completely different series of dot products, and th
 
 As the dot product can result in values between negative and positive infinity, the softmax activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence:
 $$
-w_{ij}=\frac{e^{w'_{ij}}}{\sum_{j}e^{w'_{ij})}
+w_{ij}=\frac{e^{w'_{ij}}}{\sum_{j}e^{w'_{ij}}}
 $$
 For maximum efficiency, computations are vectorized as much as possible. The resulting calculations become:
 \begin{gather}
