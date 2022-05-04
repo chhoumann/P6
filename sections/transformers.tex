@@ -4,7 +4,7 @@ The point of transformers was to overcome the problems that previous state of th
 The RNN model has two notable weaknesses. First is its inability to learn long-term patterns, due to the exploding and vanishing gradient problems that occur during backpropagation.
 Secondly, its recurrent connection is also a weakness. This is because it is not possible to compute the cell at time step $i$ until the cell at time step $i-1$ has been computed as information is propagated along a sequence.
 
-However, this is one of the benefits of CNNs---they can be computed concurrently. However, they are unable to learn even short term patterns as well. They can only learn patterns that fit within their kernel size.
+In contrast, one of the benefits of CNNs is that they can be computed concurrently. However, unlike RNNs, they are unable to learn even short-term patterns. They can only learn patterns that fit within their kernel size.
 
 Transformers try to get the best of both.
 They can model dependencies over the whole range of the input sequence as easily it can model those next to each other. And there are no recurrent connections, so it can be computed very efficiently using parallel computation. This is facilitated through the use of the self-attention mechanism.\cite{TransformersScratchPeterbloem}
