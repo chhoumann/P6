@@ -7,7 +7,9 @@ Another approach to time series forecasting is the use of neural networks. A pop
 A primary issue with RNNs are the vanishing gradient and the exploding gradient problem with longer patterns, which more powerful models seek to improve upon. \cite{AIModernApproach}\cite{hands-onML}
 
 \subsection{MLP models}
-
+A Multilayer Perceptron consists of an input and output layer as well as one or more hidden layers. These hidden layers are made up of multiple neurons. 
+Since MLPs are feedforward algorithms the inputs are combined with an initial weight in a weight sum and then given to the activation function. 
+Each of these hidden layers are then feeding their output and their internal representation of the data to the next layer in the line until we reach the output layer.\cite{bentoMultilayerPerceptronExplained2021}
 
 \subsection{LSTM and GRU models}
 To combat the issues of the vanishing gradient and exploding gradient problem, the Long short-term memory (LSTM) model was introduced by Sepp Hochreiter et. al. The basic principle of this model is the ability to bridge time intervals across longer time steps, which is achieved through the maintenance, updating and filtering of information into a cell state, which propagates through the entire network \cite{LSTMPaper}. 
