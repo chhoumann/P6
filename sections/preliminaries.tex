@@ -1,3 +1,4 @@
+\subsection{Time series problem definition}
 Given a cyber-physical system with \textit{N} sensors, each sensor is attributed with a time series.
 Each timestamp in each of these time series contains information about \textit{C} features.
 A time series of \textit{N} sensors can then be represented as \(X \in \mathbb{R}^{N \times C \times T}\).
@@ -7,3 +8,14 @@ Finally, the vector of attributes for the \textit{i}-th sensor at timestamp \tex
 
 % maybe TODO: Define correlated time series forecasting, if we end up using it.
 % TODO: Formal problem definition 
+
+\subsection{Problem overview}
+Given a time series as aforementioned, it is useful to be able to forecast the future behavior of the time series.
+This can be done by using a model that is able to predict the future behavior of the time series.
+That is, we predict some target feature value at a future time step, e.g., the next value of the temperature.
+
+
+There exist many techniques to do such forecasting. Some of these were presented in section \ref{sec:relatedwork}.
+Given these models, there must be a way to compare their performance.
+Therefore, we will compare the performance of the previously mentioned methods to the more recent transformer model.
+The task is to predict the mean temperature in a time series at a future time step, given data about previous time steps.
