@@ -11,11 +11,11 @@ Finally, the vector of attributes for the \textit{i}-th sensor at timestamp \tex
 
 \subsection{Problem overview}
 Given a time series as previously mentioned, it is useful to be able to forecast the future behavior of the time series.
-This can be done by using a model that is able to predict the future behavior of the time series.
+This can be done using a model that is able to predict that future behavior.
 That is, we predict some target feature value at a future time step, for example, the next value of the temperature.
 
 
-There exist many techniques to do such forecasting. Some of these were presented in section \ref{sec:relatedwork}.
+There exist many techniques that can be used to perform time series forecasting. Some of these were presented in section \ref{sec:relatedwork}.
 A common approach to finding the best-performing model for a given task is to measure its performance on different data sets and compare it to other models.
 As such, we will compare the performance of the previously described models to the more recent transformer model.
-The task is to predict the mean temperature in a time series at a future time step, given data about previous time steps.
+The goal is to predict the mean temperature in a time series at a future time step using data from preceding time steps.
