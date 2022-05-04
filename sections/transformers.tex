@@ -46,7 +46,7 @@ There are several different variations of the transformer architecture, and the 
 
 First, the transformer block applies self-attention. Then it does layer normalization, after which it applies a feed forward network. The feed forward network here is a single MLP applied independently to each vector. And lastly, another layer normalization is applied.
 
-Your network may become permutation invariant, meaning that no matter which order your words are in, you get the same output given the same words. This can be detrimental to the training process, as it means that the model is not learning the dependencies between words. Positions matter. If every word in this paper was ordered alphabetically, it wouldn't make much sense.
+The network may become permutation invariant, meaning the output will not change despite reordering the words in the input sentence. This can be detrimental to the training process, as it means the model is not learning the dependencies between words---positions matter. If every word in this paper were ordered alphabetically, it would not make much sense.
 
 To solve this, one can use positional embeddings or positional encodings.
 
