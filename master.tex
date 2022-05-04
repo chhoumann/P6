@@ -1,6 +1,18 @@
 \input{setup/preamble.tex}
 
 \begin{document}
+Hello Yunyao,
+
+This is our latest report.
+
+We have some questions we'd like to highlight here.
+
+\begin{itemize}
+    \item If you add lag features to a time series, can you still call the forecasting univariate? We are uncertain, as we'd still only consider one variable over time (mean temperature), but since we add more features, we become uncertain.
+    \item {}
+\end{itemize}
+
+\newpage
 
 \title{Weather Forecasting}
 \author{
@@ -16,71 +28,29 @@
 \maketitle
 
 \begin{abstract}
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-    Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
 \end{abstract}
 
 \begin{IEEEkeywords}
 machine learning, weather forecasting
 \end{IEEEkeywords}
 
+\section{Introduction}
 \input{sections/introduction.tex}
 
+\section{Preliminaries}
+\input{sections/preliminaries.tex}
 
-\section{Related work}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-
-Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
-
-Donec et lacus tortor. Nam congue tincidunt iaculis. Donec laoreet mattis metus, ut lobortis nisl maximus a. Nulla eu lectus odio. Donec at maximus felis. Donec leo arcu, gravida sit amet porta sed, molestie eget urna. Quisque sagittis diam sed tempus volutpat. Fusce blandit euismod lectus nec placerat. Etiam dui turpis, porttitor eget elementum ut, fringilla sed ex.
-
-Aliquam convallis arcu et lectus dignissim lobortis. Donec iaculis massa arcu. Ut lobortis sed mauris et sollicitudin. Pellentesque pretium orci ornare augue ornare, a imperdiet nunc tristique. Morbi justo metus, posuere feugiat lacinia sit amet, laoreet a enim. Nam condimentum, nisl et interdum semper, lorem eros maximus tellus, non egestas risus erat et lectus. Proin porttitor eros eget dui tincidunt, quis bibendum nisi ornare. Mauris risus ante, lobortis id accumsan a, egestas eget diam. Praesent vestibulum sapien eu maximus lobortis.
-
-Duis non erat aliquet, euismod dolor ac, facilisis dolor. Donec quis leo ligula. Vivamus sed erat quis leo mattis iaculis quis sit amet est. Pellentesque ornare, mauris quis scelerisque fermentum, nibh risus ultricies massa, ac condimentum tortor nunc ac purus. Cras tempor augue ac sapien posuere viverra vel vel turpis. Praesent non turpis ac tortor faucibus hendrerit eget sit amet mauris. Donec bibendum neque erat, eu congue ex rhoncus ac. In aliquet dolor non mi semper tempor. Cras quis tortor a metus aliquam iaculis nec vitae justo. Integer ultricies diam sed imperdiet semper. Praesent tristique urna eu turpis commodo pharetra. Aenean augue tellus, auctor nec lobortis sed, porttitor ut quam.
+\section{Related work}\label{sec:relatedwork}
+\input{sections/linear-regression.tex}
+\input{sections/related-works.tex}
 
 \section{Problem Formal Definition}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-
-Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
-
-Donec et lacus tortor. Nam congue tincidunt iaculis. Donec laoreet mattis metus, ut lobortis nisl maximus a. Nulla eu lectus odio. Donec at maximus felis. Donec leo arcu, gravida sit amet porta sed, molestie eget urna. Quisque sagittis diam sed tempus volutpat. Fusce blandit euismod lectus nec placerat. Etiam dui turpis, porttitor eget elementum ut, fringilla sed ex.
-
-Aliquam convallis arcu et lectus dignissim lobortis. Donec iaculis massa arcu. Ut lobortis sed mauris et sollicitudin. Pellentesque pretium orci ornare augue ornare, a imperdiet nunc tristique. Morbi justo metus, posuere feugiat lacinia sit amet, laoreet a enim. Nam condimentum, nisl et interdum semper, lorem eros maximus tellus, non egestas risus erat et lectus. Proin porttitor eros eget dui tincidunt, quis bibendum nisi ornare. Mauris risus ante, lobortis id accumsan a, egestas eget diam. Praesent vestibulum sapien eu maximus lobortis.
-
-Duis non erat aliquet, euismod dolor ac, facilisis dolor. Donec quis leo ligula. Vivamus sed erat quis leo mattis iaculis quis sit amet est. Pellentesque ornare, mauris quis scelerisque fermentum, nibh risus ultricies massa, ac condimentum tortor nunc ac purus. Cras tempor augue ac sapien posuere viverra vel vel turpis. Praesent non turpis ac tortor faucibus hendrerit eget sit amet mauris. Donec bibendum neque erat, eu congue ex rhoncus ac. In aliquet dolor non mi semper tempor. Cras quis tortor a metus aliquam iaculis nec vitae justo. Integer ultricies diam sed imperdiet semper. Praesent tristique urna eu turpis commodo pharetra. Aenean augue tellus, auctor nec lobortis sed, porttitor ut quam.
 
 \section{Methodology}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-
-Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
-
-Donec et lacus tortor. Nam congue tincidunt iaculis. Donec laoreet mattis metus, ut lobortis nisl maximus a. Nulla eu lectus odio. Donec at maximus felis. Donec leo arcu, gravida sit amet porta sed, molestie eget urna. Quisque sagittis diam sed tempus volutpat. Fusce blandit euismod lectus nec placerat. Etiam dui turpis, porttitor eget elementum ut, fringilla sed ex.
-
-Aliquam convallis arcu et lectus dignissim lobortis. Donec iaculis massa arcu. Ut lobortis sed mauris et sollicitudin. Pellentesque pretium orci ornare augue ornare, a imperdiet nunc tristique. Morbi justo metus, posuere feugiat lacinia sit amet, laoreet a enim. Nam condimentum, nisl et interdum semper, lorem eros maximus tellus, non egestas risus erat et lectus. Proin porttitor eros eget dui tincidunt, quis bibendum nisi ornare. Mauris risus ante, lobortis id accumsan a, egestas eget diam. Praesent vestibulum sapien eu maximus lobortis.
-
-Duis non erat aliquet, euismod dolor ac, facilisis dolor. Donec quis leo ligula. Vivamus sed erat quis leo mattis iaculis quis sit amet est. Pellentesque ornare, mauris quis scelerisque fermentum, nibh risus ultricies massa, ac condimentum tortor nunc ac purus. Cras tempor augue ac sapien posuere viverra vel vel turpis. Praesent non turpis ac tortor faucibus hendrerit eget sit amet mauris. Donec bibendum neque erat, eu congue ex rhoncus ac. In aliquet dolor non mi semper tempor. Cras quis tortor a metus aliquam iaculis nec vitae justo. Integer ultricies diam sed imperdiet semper. Praesent tristique urna eu turpis commodo pharetra. Aenean augue tellus, auctor nec lobortis sed, porttitor ut quam.
 
 \section{Experiment N \& Analysis}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-
-Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
-
-Donec et lacus tortor. Nam congue tincidunt iaculis. Donec laoreet mattis metus, ut lobortis nisl maximus a. Nulla eu lectus odio. Donec at maximus felis. Donec leo arcu, gravida sit amet porta sed, molestie eget urna. Quisque sagittis diam sed tempus volutpat. Fusce blandit euismod lectus nec placerat. Etiam dui turpis, porttitor eget elementum ut, fringilla sed ex.
-
-Aliquam convallis arcu et lectus dignissim lobortis. Donec iaculis massa arcu. Ut lobortis sed mauris et sollicitudin. Pellentesque pretium orci ornare augue ornare, a imperdiet nunc tristique. Morbi justo metus, posuere feugiat lacinia sit amet, laoreet a enim. Nam condimentum, nisl et interdum semper, lorem eros maximus tellus, non egestas risus erat et lectus. Proin porttitor eros eget dui tincidunt, quis bibendum nisi ornare. Mauris risus ante, lobortis id accumsan a, egestas eget diam. Praesent vestibulum sapien eu maximus lobortis.
-
-Duis non erat aliquet, euismod dolor ac, facilisis dolor. Donec quis leo ligula. Vivamus sed erat quis leo mattis iaculis quis sit amet est. Pellentesque ornare, mauris quis scelerisque fermentum, nibh risus ultricies massa, ac condimentum tortor nunc ac purus. Cras tempor augue ac sapien posuere viverra vel vel turpis. Praesent non turpis ac tortor faucibus hendrerit eget sit amet mauris. Donec bibendum neque erat, eu congue ex rhoncus ac. In aliquet dolor non mi semper tempor. Cras quis tortor a metus aliquam iaculis nec vitae justo. Integer ultricies diam sed imperdiet semper. Praesent tristique urna eu turpis commodo pharetra. Aenean augue tellus, auctor nec lobortis sed, porttitor ut quam.
 
 \section{Conclusion}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at dapibus mi, nec bibendum eros. Etiam lacus velit, tempus a aliquam sit amet, volutpat non lorem. Curabitur nec gravida quam. Donec risus nulla, convallis sed gravida sit amet, fermentum sit amet odio. Donec malesuada metus semper, ornare sem nec, euismod nisl. Nunc eu nisl mi. Proin nec pharetra tellus, suscipit iaculis ipsum.
-
-Donec laoreet sapien quis consequat aliquet. Donec ut ultrices mi. Fusce dapibus tincidunt pulvinar. Maecenas rutrum odio id metus tempor pulvinar in id urna. Integer hendrerit nibh felis, vel efficitur quam scelerisque id. Ut eget lorem vitae sem placerat congue. Vestibulum sed elit quis elit volutpat malesuada ac convallis mauris. Maecenas ullamcorper pulvinar lorem, at viverra massa sollicitudin non. Quisque quam lacus, venenatis ac felis ac, volutpat consectetur odio. Cras accumsan ex eu orci efficitur venenatis.
-
-Donec et lacus tortor. Nam congue tincidunt iaculis. Donec laoreet mattis metus, ut lobortis nisl maximus a. Nulla eu lectus odio. Donec at maximus felis. Donec leo arcu, gravida sit amet porta sed, molestie eget urna. Quisque sagittis diam sed tempus volutpat. Fusce blandit euismod lectus nec placerat. Etiam dui turpis, porttitor eget elementum ut, fringilla sed ex.
-
-Aliquam convallis arcu et lectus dignissim lobortis. Donec iaculis massa arcu. Ut lobortis sed mauris et sollicitudin. Pellentesque pretium orci ornare augue ornare, a imperdiet nunc tristique. Morbi justo metus, posuere feugiat lacinia sit amet, laoreet a enim. Nam condimentum, nisl et interdum semper, lorem eros maximus tellus, non egestas risus erat et lectus. Proin porttitor eros eget dui tincidunt, quis bibendum nisi ornare. Mauris risus ante, lobortis id accumsan a, egestas eget diam. Praesent vestibulum sapien eu maximus lobortis.
-
-Duis non erat aliquet, euismod dolor ac, facilisis dolor. Donec quis leo ligula. Vivamus sed erat quis leo mattis iaculis quis sit amet est. Pellentesque ornare, mauris quis scelerisque fermentum, nibh risus ultricies massa, ac condimentum tortor nunc ac purus. Cras tempor augue ac sapien posuere viverra vel vel turpis. Praesent non turpis ac tortor faucibus hendrerit eget sit amet mauris. Donec bibendum neque erat, eu congue ex rhoncus ac. In aliquet dolor non mi semper tempor. Cras quis tortor a metus aliquam iaculis nec vitae justo. Integer ultricies diam sed imperdiet semper. Praesent tristique urna eu turpis commodo pharetra. Aenean augue tellus, auctor nec lobortis sed, porttitor ut quam.
 
 %\section*{Acknowledgment}
 
