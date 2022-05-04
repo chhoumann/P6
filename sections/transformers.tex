@@ -48,8 +48,9 @@ First, the transformer block applies self-attention. Then it does layer normaliz
 
 Your network may become permutation invariant, meaning that no matter which order your words are in, you get the same output given the same words. This can be detrimental to the training process, as it means that the model is not learning the dependencies between words. Positions matter. If every word in this paper was ordered alphabetically, it wouldn't make much sense.
 
-To solve this, one can use position embeddings or position encodings.
+To solve this, one can use positional embeddings or positional encodings.
 
-With position embedding, you embed the position of the word in the sentence. For this to work during training, you would need to see sequences of every length, otherwise the relevant position embeddings do not get trained.
+With positional embedding, the position of the word in the sentence is embedded. For this to work during training, sequences of every length would need to be seen, otherwise, the relevant positional embeddings do not get trained.
 
-Position encodings work in a similar way, except you do not learn the position vectors, you choose a function $f:\mathbb{N}\rightarrow\mathbb{R}^k$ that map the positions to real valued vectors. The network is left to figure out how to interpret these.\cite{TransformersScratchPeterbloem}
+Positional encodings work in a similar fashion, except the positional vectors are not learned.
+Instead, a function is chosen $f:\mathbb{N}\rightarrow\mathbb{R}^k$ that maps the positions to real-valued vectors. The network is left to figure out how to interpret these.\cite{TransformersScratchPeterbloem}
