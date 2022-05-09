@@ -17,32 +17,41 @@ Transformers can model dependencies over the whole range of the input sequence a
 
 
 \subsection{Self-attention Mechanism}
-A self-attention mechanism is a sequence to sequence operation. This means that the input is a sequence of vectors $x_{1},x_{2},\ldots, x_{t}$, and the output is also a sequence of vectors $y_{1},y_{2},\ldots, y_{t}$.
-These vectors all have dimension $k$.
 
-To get the output vector $y_{i}$, the operation takes a weighted average over all input vectors.
-$$
-y_{i}=\sum_{j}w_{ij}x_{j}
-$$
-Here, $j$ indexes over the whole sequence, and the sum of all the weights in the sequence is one.
-The weight $w_{ij}$ is derived from a function over $x_{i}$ and $x_{j}$.
-This could, for example, be the dot product:
-$$
-w'_{ij}=x_{i}^Tx_{j}
-$$
-where $x_{i}$ is the input vector at the same position as the current output vector $y_{i}$.
-The next output vector has a completely different series of dot products, and therefore a different weighted sum.
+- snak om time embedding 
+- måske snak om convoluted neural networks 
+- afslut med at gennemgå den overordnede struktur, vi bruger i vores model - (similar to BERT)
 
-As the dot product can result in values between negative and positive infinity, the softmax activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence:
+With self-attention, the model can learn to associate different input.
+To achieve this, three input vectors are needed - queries and keys of dimension $d_k$, and values of dimension $d_v$.
+The attention function maps the query and the set of key-value pairs to some output, where the output is a weighted sum of the values.
+The weight of each value is calculated using a compatibility function.
+This weight denotes how compatible the query is with the given key.
+
+
+
+The output matrix of weights is computed using the function
 $$
-w_{ij}=\frac{e^{w'_{ij}}}{\sum_{j}e^{w'_{ij}}}
+Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V
 $$
-For maximum efficiency, computations are vectorized as much as possible. The resulting calculations become:
-\begin{gather}
-W'=X^TX\\
-W=\text{softmax}(W')\\
-Y^T=WX^T
-\end{gather}\cite{TransformersScratchPeterbloem}
+
+Additive attention and dot product attention are among some of the most common attention functions used.
+For the purposes of this project, we decided to use the scaled dot product attention technique with the scaling factor $\frac{1}{\sqrt{d_k}}$.
+We use this technique as it is faster and more space-efficient as argued in \citet{AttentionIsAllYouNeed}.
+
+Because the dot product can result in values between negative and positive infinity, the \textit{softmax} activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence.
+
+\subsection{Multi-Head Attention}
+To improve the self-attention mechanism, the authors of the original transformer model implemented multi-head attention.
+This is a module that runs through the previously described attention mechanism multiple times and in parallel.
+It then concatenates the attention weights of all the independent self-attention layers. 
+
+\begin{align*}
+MultiHead(Q, K, V) = Concat(h_1, \ldots, h_i)W^O \\
+\text{where }h_i = Attention(QW^Q_i, KW^K_i, VW^V_i) 
+\end{align*}
+
+In the model we use, the weights are then passed through a dense layer in which a non-linear transformation is applied using the \textit{ReLU} activation function rather than a linear transformation as described in \citet{AttentionIsAllYouNeed}.
 
 
 \subsection{How transformers work}
