@@ -1,6 +1,26 @@
 \input{setup/preamble.tex}
 
 \begin{document}
+Hello Yunyao,
+
+This is our latest report.
+
+We have some questions we'd like to highlight here.
+
+\begin{itemize}
+    \item If you add lag features to a time series, can you still call the forecasting univariate? We are uncertain, as we'd still only consider one variable over time (mean temperature), but since we add more features, we become uncertain.
+    \item Should we add data sets to the appendix? And if we should, how do we reference them?
+    \item Should we explicitly describe back propagation?
+\end{itemize}
+
+\section{Changelog - please review these sections}
+\begin{itemize}
+    \item Preliminaries
+    \item MLP in Related works
+    \item Transformer theory section
+\end{itemize}
+
+\newpage
 
 \title{Weather Forecasting}
 \author{
@@ -22,14 +42,17 @@
 machine learning, weather forecasting
 \end{IEEEkeywords}
 
+\section{Introduction}
 \input{sections/introduction.tex}
-
-\section{Related work}
-\input{sections/linear-regression.tex}
-\input{sections/related-works.tex}
 
 \section{Preliminaries}
 \input{sections/preliminaries.tex}
+
+\section{Related work}\label{sec:relatedwork}
+\input{sections/statistical-models.tex}
+\input{sections/machine-learning.tex}
+\input{sections/deep-learning.tex}
+\input{sections/transformers.tex}
 
 \section{Methodology}
 
