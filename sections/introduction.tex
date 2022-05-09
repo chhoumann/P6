@@ -4,6 +4,11 @@ In a CPS, physical and software components work together in different spatial an
 
 An example of such a system is how large weather sensor networks work in correlation. These produce both local weather time series, but they also affect how data from other sensors are interpreted. This, in turn, produces multiple weather time series that are all correlated. Being able to accurately forecast the weather has a large impact on most other CPSs as well as most people's daily lives. Having an accurate forecasting model is necessary in order to be able to accurately identify trends and outliers as well as predicting the future behavior of the weather. Ultimately all of this is useful in both the day to day running of other CPSs, and also in predicting future possible climate changes. 
 
+Weather is a suitable problem to model as a time series since historical weather data is timestamped.
+Forecasting can then be made using a forecasting model.
+The major advantage to time series forecasting is that there is no need to build complex physical systems for measuring the weather. 
+Previous data is simply used to predict future behavior.
+
 To generate a reliable time series weather forecasting model, we need a model that is able to account for the seasonality aspect of the weather and the variable attributes that affect the future. 
 This means that, in order to generate an accurate model, one must be able to take into account previous historical states when making predictions for the future. 
 
@@ -11,4 +16,3 @@ Today, the state of the art methods in time series forecasting include methods s
 (GRUs).
 However, more recently in the field of natural language processing (NLP), the transformer model has shown great potential and is able outperform the aforementioned methods \cite{AttentionIsAllYouNeed}.
 Because of this, we wish to compare the performance of the previously used methods to the more recent transformer model when performing univariate time series weather forecasting. Our goal is to determine whether this model is able to also outperform the previously used methods in time series forecasting.
-
