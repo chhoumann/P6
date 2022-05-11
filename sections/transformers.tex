@@ -40,7 +40,7 @@ We use this technique as it is faster and more space-efficient as argued in \cit
 
 Because the dot product can result in values between negative and positive infinity, the \textit{softmax} activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence. \cite{AttentionIsAllYouNeed}
 
-\subsection{Multi-Head Attention}
+\subsection{Multi-Head Attention} \label{sec:multi-head attention}
 To improve the self-attention mechanism, the authors of the original transformer model implemented multi-head attention.
 This is a module that runs through the previously described attention mechanism multiple times and in parallel.
 It then concatenates the attention weights of all the independent self-attention layers. 
@@ -50,7 +50,8 @@ MultiHead(Q, K, V) = Concat(h_1, \ldots, h_i)W^O \\
 \text{where }h_i = Attention(QW^Q_i, KW^K_i, VW^V_i) 
 \end{align*}
 
-In the model we use, the weights are then passed through a dense layer in which a non-linear transformation is applied using the \textit{ReLU} activation function rather than a linear transformation as described in \citet{AttentionIsAllYouNeed}. \cite{AttentionIsAllYouNeed}
+In the model we use, the weights are then passed through a dense layer in which a non-linear transformation is applied using the \textit{ReLU} activation function rather than a linear transformation as described in \citet{AttentionIsAllYouNeed}. 
+Once this computation is completed, the result is the final multi-head attention weight matrix. \cite{AttentionIsAllYouNeed}
 
 \subsection{Time embedding}
 The transformer model is indifferent to temporal information.
@@ -72,19 +73,46 @@ For a given scalar notion of time $\tau$, TimeToVector of $\tau$ is a vector of 
 
 where $TimeToVector(\tau)[i]$ is the \textit{i}th element of $TimeToVector(\tau)$, $\mathcal{F}$ is a periodic activation function (the sine function, in our case), and $\omega_i$ and $\varphi_i$ are learnable parameters. \cite{time2vec}
 
+- forklar hvad dropout layer gør
+- forklar hvad residual connection gør
+- forklar hvad normalization gør
+\subsection{The transformer encoder layer}
+The previously described elements are now aggregated into a transformer encoder layer as shown in figure \ref{fig:encoder transformer}.
+To improve the performance of the transformer, multiple of these layers can be stacked, and each of these encoder layers contain a self-attention sublayer as well as a feedforward sublayer. 
 
-\subsection{How transformers work}
-Transformers, as mentioned, primarily use self-attention. This forms the basis of the architecture.
+Once the multi-head attention weights have been computed, these weights are then fed into a dropout layer. 
+Given some rate value, this layer randomly sets the input units to 0 using that rate as the frequency.
+In other words, some values from the input are dropped, which helps prevent overfitting during training.
 
-There are several different variations of the transformer architecture, and the following is just one such variant.
+Following the dropout layer, the weights are normalized in a normalization layer. 
+This gives us the final attention weights which are then passed to the feedforward layer.
 
-First, the transformer block applies self-attention. Then it does layer normalization, after which it applies a feed forward network. The feed forward network here is a single MLP applied independently to each vector. And lastly, another layer normalization is applied.
+The feedfoward layer is the dense layer, as described in section \ref{sec:multi-head attention}.
+It should be noted that the two dense layers per encoder layer consist of 1-dimensional convoluted neural networks with a kernel size and stride of 1.
+The output of these two layers are then fed into another dropout layer (residiual)
 
-The network may become permutation invariant, meaning the output will not change despite reordering. In the context of natural language processing, the ordering of the words in the input sentence would not matter. This can be detrimental to the training process, as it means the model is not learning the dependencies between words---positions matter. If every word in this paper were ordered alphabetically, it would not make much sense.
+Finally, the values are normalized, which gives us the final transformer encoder output values.
 
-To solve this, one can use positional embeddings or positional encodings.
 
-With positional embedding, the position of the word in the sentence is embedded. For this to work during training, sequences of every length would need to be seen, otherwise, the relevant positional embeddings do not get trained.
+%Transformers, as mentioned, primarily use self-attention. This forms the basis of the architecture.
+%
+%There are several different variations of the transformer architecture, and the following is just one such variant.
+%
+%First, the transformer block applies self-attention. Then it does layer normalization, after which it applies a feed forward network. The feed forward network here is a single MLP applied independently to each vector. And lastly, another layer normalization is applied.
+%
+%The network may become permutation invariant, meaning the output will not change despite reordering. In the context of natural language processing, the ordering of the words in the input sentence would not matter. This can be detrimental to the training process, as it means the model is not learning the dependencies between words---positions matter. If every word in this paper were ordered alphabetically, it would not make much sense.
+%
+%To solve this, one can use positional embeddings or positional encodings.
+%
+%With positional embedding, the position of the word in the sentence is embedded. For this to work during training, sequences of every length would need to be seen, otherwise, the relevant positional embeddings do not get trained.
+%
+%Positional encodings work in a similar fashion, except the positional vectors are not learned.
+%Instead, a function is chosen $f:\mathbb{N}\rightarrow\mathbb{R}^k$ that maps the positions to real-valued vectors. The network is left to figure out how to interpret these.\cite{TransformersScratchPeterbloem}
 
-Positional encodings work in a similar fashion, except the positional vectors are not learned.
-Instead, a function is chosen $f:\mathbb{N}\rightarrow\mathbb{R}^k$ that maps the positions to real-valued vectors. The network is left to figure out how to interpret these.\cite{TransformersScratchPeterbloem}
+\section{Transformers}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{Encoder transformer}
+\caption{The transformer encoder layer.}
+\label{fig:encoder transformer}
+\end{figure}
