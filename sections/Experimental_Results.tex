@@ -4,29 +4,46 @@ The following datasets have been used when conducting experiments on the various
 \begin{itemize}
     \item \textbf{Austin:} The raw dataset over weather features in Austin, Texas covers a 4 year period from 2013 to 2017 with data logged once per day in the period.
     \item \textbf{Bangladesh:} The weather dataset for Bangladesh was collected during the period 1901 to 2015 and shows the average monthly temperature during this period. 
-    \item \textbf{Delhi:} The dataset covers weather data for Delhi, India during the years from 1996 to 2017 with 3 hours between each logged data point.
+    \item \textbf{Delhi:} The dataset covers weather data for Delhi, India during the years from 2013 to 2017 with 1 day between each logged data point.
     \item \textbf{Szeged:} The raw dataset covers weather data for Szeged, Hungary from 2006 to 2016 generated every 1 over a 10 year span.
     \item \textbf{Jena:} The dataset was recorded at the Max Planck Institutes weather station in Jena, Germany covering the time period from 2009 to 2016.
 \end{itemize}
 
 \begin{table}[!ht]
 \centering
-\begin{tabular}{|l|l|l|ll}
+\caption {Dataset Statistics} \label{tab:DatasetTable}
+\begin{tabular}{|l|r|r|ll}
 \cline{1-3}
-Dataset    & \#Samples & \#Sample rate &  &  \\ \cline{1-3}
-Austin     & 1319      & 1 Day         &  &  \\ \cline{1-3}
-Bangladesh & 1380      & 1 Month       &  &  \\ \cline{1-3}
-Delhi      & 100990    & 3 Hours       &  &  \\ \cline{1-3}
-Jena       & 420451    & 10 Minutes    &  &  \\ \cline{1-3}
-Szeged     & 96453     & 1 Hour        &  &  \\ \cline{1-3}
+Dataset    & \multicolumn{1}{l|}{\#Samples} & \multicolumn{1}{l|}{\#Sample rate} &  &  \\ \cline{1-3}
+Austin     & 1319                           & 1 Day                              &  &  \\ \cline{1-3}
+Bangladesh & 1380                           & 1 Month                            &  &  \\ \cline{1-3}
+Delhi      & 100990                         & 3 Hours                            &  &  \\ \cline{1-3}
+Jena       & 420451                         & 10 Minutes                         &  &  \\ \cline{1-3}
+Szeged     & 96453                          & 1 Hour                             &  &  \\ \cline{1-3}
 \end{tabular}
 \end{table}
 
 This paper uses Root mean square error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
 $$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
 
+\Subsection{Models used in the comparison}
+The comparison taking place below compares the best results computed from the following models. These models are taken from both statistical, machine learning as well as deep learning in order to get a better overview on how the transformers results compares with other well known models.
+\begin{itemize}
+    \item ARIMA: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
+    \item GRU: A RNN-model similar to LSMT but with a forget-gate added instead of an output gate.
+    \item LinReg: A standard linear regressive model.
+    \item LSTM: A model modifying RNNs memory system in order to combat the common vanishing decent problem.
+    \item MLP: Is a classic neural network used for regression prediction problems.
+    \item RNN: The standard recurrent neural network model.
+    \item Transformer: A state of art model used in NLP modified to work for time series forecasting.
+\end{itemize}
+
+\subsection{Implementation Details}
+All experiments included in this report have been conducted on DeepNote Workspaces.
+
 \begin{table}[!ht]
 \centering
+\caption {Summary of results gathered with the best results highlighted in bold and underlined} \label{tab:ResultsTable} 
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
 \multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{l|}{Szeged} \\ \hline
@@ -39,3 +56,6 @@ RNN                          & 13.8045                     & 3.6967             
 Transformer                  & {\ul \textbf{0.0796}}       & {\ul \textbf{0.0369}}           & 0.0695                     & {\ul \textbf{0.0581}}     & {\ul \textbf{0.1290}}       \\ \hline
 \end{tabular}
 \end{table}
+
+\subsection{Results}
+Table \ref{tab:ResultsTable} summarises the best performances of the tested models for each of the five datasets used. Here it is observed that the best performing model for 4/5 of the used datasets is the Transformer model. 
