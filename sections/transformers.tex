@@ -16,7 +16,7 @@ In contrast, one of the benefits of CNNs is that they can be computed concurrent
 Transformers attempt to feature the best of both techniques.
 Transformers can model dependencies over the whole range of the input sequence as easily they can model neighboring sequences. And there are no recurrent connections, allowing efficient computation using parallelization. This is facilitated through the use of the self-attention mechanism.\cite{TransformersScratchPeterbloem}
 
-
+ 
 \subsection{Self-attention Mechanism}
 
 
@@ -93,6 +93,7 @@ The output of these two layers are then fed into another dropout layer, which al
 Finally, the values are normalized, which gives us the final transformer encoder output values.
 The resulting architecture can be seen in figure \ref{fig:encoder transformer}.
 As this figure demonstrates, the architecture is different from the original transformer architecture shown in \ref{fig:original transformer}.
+Our transformer architecture is based on the architecture by \citet{schmitz_stock_2020}, which includes many of the original architectural elements from \textit{Attention Is All You Need} \cite{AttentionIsAllYouNeed}.
 Because we are not working with natural language processing, there is no need for a decoder layer, since we do not to output any decoded data. 
 
 \begin{figure}[h]
