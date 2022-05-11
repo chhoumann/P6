@@ -1,0 +1,62 @@
+\label{sec:ExpRes}
+\subsection{Datasets}
+The following datasets have been used when conducting experiments on the various machine learning algorithms used in this paper.
+\begin{itemize}
+    \item \textbf{Austin:} The raw dataset over weather features in Austin, Texas covers a 4 year period from 2013 to 2017 with data logged once per day in the period.
+    \item \textbf{Bangladesh:} The weather dataset for Bangladesh was collected during the period 1901 to 2015 and shows the average monthly temperature during this period. 
+    \item \textbf{Delhi:} The dataset covers weather data for Delhi, India from 2013 to 2017 with one day between each logged data point.
+    \item \textbf{Szeged:} The raw dataset covers weather data for Szeged, Hungary from 2006 to 2016 generated every hour over a 10-year span.
+    \item \textbf{Jena:} The dataset was recorded at the Max Planck Institute's weather station in Jena, Germany from 2009 to 2016.
+\end{itemize}
+
+\begin{table}[!ht]
+\centering
+\caption {Dataset Statistics} \label{tab:DatasetTable}
+\begin{tabular}{|l|r|r|ll}
+\cline{1-3}
+Dataset    & \multicolumn{1}{l|}{\#Samples} & \multicolumn{1}{l|}{\#Sample rate} &  &  \\ \cline{1-3}
+Austin     & 1319                           & 1 Day                              &  &  \\ \cline{1-3}
+Bangladesh & 1380                           & 1 Month                            &  &  \\ \cline{1-3}
+Delhi      & 100990                         & 3 Hours                            &  &  \\ \cline{1-3}
+Jena       & 420451                         & 10 Minutes                         &  &  \\ \cline{1-3}
+Szeged     & 96453                          & 1 Hour                             &  &  \\ \cline{1-3}
+\end{tabular}
+\end{table}
+
+This paper uses root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
+$$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
+
+\subsection{Compared Models}
+Below is a comparison of the best results computed from the following models. These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
+\begin{itemize}
+    \item ARIMA: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
+    \item GRU: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
+    \item LinReg: A standard linear regression model.
+    \item LSTM: A model modifying the RNN memory system in order to combat the common vanishing gradient problem.
+    \item MLP: The classic neural network used for regression prediction problems.
+    \item RNN: The standard recurrent neural network model.
+    \item Transformer: A state of art model used in NLP, modified to work for time series forecasting.
+\end{itemize}
+
+\subsection{Implementation Details}
+All experiments included in this report have been conducted on Deepnote workspaces\cite{deepnote}.
+
+\begin{table}[!ht]
+\centering
+\caption {Summary of gathered results---the best results are highlighted in bold and underlined.} \label{tab:ResultsTable} 
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{l|}{Szeged} \\ \hline
+ARIMA                        & 14.1560                     & 3.7620                          & 1.7350                     & 5.921                     & 6.354                       \\ \hline
+GRU                          & 16.2124                     & 3.7042                          & {\ul \textbf{0.0038}}      & 3.7053                    & 9.5446                      \\ \hline
+LinReg                       & 5.4563                      & 1.0888                          & 1.67                       & 0.2105                    & 1.1858                      \\ \hline
+LSTM                         & 21.1959                     & 3.7053                          & {\ul \textbf{0.0038}}      & 8.4337                    & 9.5441                      \\ \hline
+MLP                          & 5.2465                      & 0.7421                          & 1.6709                     & 0.2331                    & 9.5171                      \\ \hline
+RNN                          & 13.8045                     & 3.6967                          & 0.0594                     & 2.8993                    & 1.3143                      \\ \hline
+Transformer                  & {\ul \textbf{0.0796}}       & {\ul \textbf{0.0369}}           & 0.0695                     & {\ul \textbf{0.0581}}     & {\ul \textbf{0.1290}}       \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Results}
+Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
+Note how the transformer model is the best performing model for 4/5 of the used datasets.
