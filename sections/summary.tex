@@ -1,0 +1,33 @@
+\section*{Summary}
+In this project, we are interested in doing time series forecasting using various machine and deep learning models.
+The goal is to compare their performance, both on their accuracy as well as their computation time when training on different datasets.
+Time series forecasting concerns itself with predicting future behavior of some phenomenon based on existing historical data.
+In our case, this would be predicting future temperatures based on existing historical data from different regions in the world.
+We aim to create an application that allows a user to select a trained model for use in predicting the temperature of a  region at some specified timestamp.
+
+Historically, weather forecasting has always been an important part of day-to-day life, and recently machine and deep learning has gradually become a more common technique for this.
+Popular methods include the application of models such as ARIMA, RNNs, LSTMs and GRUs.
+Each of these models have limitations that make them problematic to use in time series forecasting, however.
+For RNNs, the vanishing gradient problem limits its ability to learn over long time steps as the change of the internal weights will become miniscule, which, for long time steps, effectively prevents further training.
+LSTMs and GRUs are improvements on RNN models, however they suffer from other issues such as the abundance of parameters that often lead to complex models that take a long time to train.
+
+
+% For example, RNNs have the vanishing gradient problem, and LSTMs and GRUs use many parameters, leading to a complex model.
+
+- why are we interested in time series forecasting
+	- what is time series forecasting
+
+- different models for time series forecasting
+	- pros/cons
+	- innovations
+
+- transformer 
+	- what is a transformer? NLP origins
+	- removal of decoder
+	- time embedding 
+	- methodology - what we did (deepnote and such)
+
+- our product/innovation - the application/pipeline 
+	- results overall - transformer performance vs the other models
+
+- conclusion 
