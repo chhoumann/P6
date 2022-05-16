@@ -16,5 +16,11 @@ Today, the state of the art methods in time series forecasting include methods s
 (GRUs).
 However, each of these models have limitations that make them problematic to use in time series forecasting.
 For example, RNNs have the vanishing gradient problem, and LSTMs and GRUs use many parameters, leading to a complex model.
-More recently, in the field of natural language processing (NLP), the transformer model has shown great potential and does not suffer from similar issues as the aforementioned methods, and is even able to outperform them. \cite{AttentionIsAllYouNeed}.
+
+More recently, in the field of natural language processing (NLP), the transformer model has shown great potential and does not suffer from similar issues as the aforementioned methods, and is even able to outperform them \cite{AttentionIsAllYouNeed}.
 Because of this, we wish to compare the performance of the previously used methods to the more recent transformer model when performing univariate time series weather forecasting. Our goal is to determine whether this model is able to also outperform the previously used methods in time series forecasting.
+
+We use the existing transformer model, originally intended for NLP, and modified it so that it can be used reliably for time series forecasting.
+To this end, have developed a web application that allows the user to predict the weather at a given date using both the modified transformer as well as the older models.
+This is done through a pipeline; data from various datasets, described in section \ref{sec:ExpRes}, first go through a preprocessing phase where they are filtered and prepared for use.
+After this, they are used in the desired model, and finally the resulting prediction is displayed to the user on the website.  
