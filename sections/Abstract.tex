@@ -1,0 +1,14 @@
+Being able to perform accurate time series forecasting has always played a big role for humanity, especially when it comes to predicting the weather. 
+Today, the state of the art methods for achieving the best possible results employ machine learning. 
+For many years, however, machine and deep learning techniques have had trouble dealing with large datasets. 
+More recently, the transformer model has shown great potential handling large datasets in the field of natural language processing.
+
+In this paper, we aim to modify the transformer model such that it may be used for time series forecasting. 
+Because we are not working with natural language processing, we have removed the decoder layer, since we do not to output any decoded data. 
+In addition, the transformer model is indifferent to temporal information. 
+Therefore, in order to embed our temporal data, we convert the input data to a vector representation containing both periodic and non-periodic information.
+Our experimental results show that our modified transformer outperforms all the benchmark models.
+
+In order to display these results, we present a pipeline consisting of a pre-processing layer, the benchmark models themselves as well as the modified transformer model, and finally a front-end web application where the user can choose a model to use for a prediction.
+The pre-processing layer filters and prepares the datasets for use in the models.
+Once the desired prediction has been made with the selected model, the result is presented to the user on the front-end web application.
