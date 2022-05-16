@@ -1,9 +1,13 @@
+import pandas as pd
 import streamlit as st
 import pickle
 import numpy as np
 import sklearn
 import torch
 import torch.nn as nn
+from classes.lstm import Optimization
+
+LAG_FEATURES = 10
 
 def load_model():
     models = {}
@@ -15,6 +19,12 @@ def load_model():
 
     with open('saved_lstm.pkl', 'rb') as file:
         models["LSTM"] = pickle.load(file)
+
+    with open('saved_gru.pkl', 'rb') as file:
+        models["GRU"] = pickle.load(file)
+
+    with open('saved_rnn.pkl', 'rb') as file:
+        models["RNN"] = pickle.load(file)
 
     return models
 
@@ -34,11 +44,11 @@ def show_predict_page():
 
     models = (
         # "ARIMA",
-        #"GRU",
+        "GRU",
         "Linear Regression",
         "LSTM",
         "MLP",
-        # "RNN",
+        "RNN",
         # "Transformer",
     )
 
@@ -54,26 +64,10 @@ def show_predict_page():
         pred = ...
         if model == "Linear Regression" or model == "MLP":
             pred = run_model.predict(X)
-        if model == "LSTM":
-            output_dim = 1
-            hidden_dim = 64
-            layer_dim = 3
-            batch_size = 64
-            dropout = 0.2
-            n_epochs = 100
-            learning_rate = 1e-3
-            weight_decay = 1e-6
-
+        if model == "LSTM" or model == "RNN" or model == "GRU":
             train_loader = torch.utils.data.DataLoader(X, batch_size=64, shuffle=False, drop_last=True)
-            loss_fn = nn.MSELoss(reduction="mean")
-            optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+            pred, values = run_model.evaluate(train_loader, batch_size=1, n_features=LAG_FEATURES)
+            pred = pd.DataFrame([pred[i][0] for i in range(len(pred))])
 
-            from classes.lstm import Optimization
-            opt = Optimization(model=model, loss_fn=loss_fn, optimizer=optimizer)
-            opt.train(train_loader, test_loader, batch_size=batch_size, n_epochs=n_epochs, n_features=input_dim)
-            pred, values = run_model.evaluate(train_loader, batch_size=1, n_features=X.columns)
-            print(pred)
-
-        return
         st.line_chart(pred)
 
