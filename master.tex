@@ -8,17 +8,12 @@ This is our latest report.
 We have some questions we'd like to highlight here.
 
 \begin{itemize}
-    \item If you add lag features to a time series, can you still call the forecasting univariate? We are uncertain, as we'd still only consider one variable over time (mean temperature), but since we add more features, we become uncertain.
-    \item Should we add data sets to the appendix? And if we should, how do we reference them?
-    \item Should we explicitly describe back propagation?
+    \item Is it clear enough when we are talking about the original transformer model and our own? 
+    \item Do we need to cite sources for our claims in the abstract? The template you gave us does not seem to do this, so we are unsure.
 \end{itemize}
 
-\section{Changelog - please review these sections}
-\begin{itemize}
-    \item Preliminaries
-    \item MLP in Related works
-    \item Transformer theory section
-\end{itemize}
+\section{Changelog}
+
 
 \newpage
 
@@ -46,18 +41,20 @@ machine learning, weather forecasting
 \section{Introduction}
 \input{sections/introduction.tex}
 
-\section{Preliminaries}
-\input{sections/preliminaries.tex}
-
 \section{Related work}\label{sec:relatedwork}
 \input{sections/statistical-models.tex}
 \input{sections/machine-learning.tex}
 \input{sections/deep-learning.tex}
+
+\section{Preliminaries}
+\input{sections/preliminaries.tex}
+
+
+\section{Transformer model for time series forecasting by embedding temporal data as vectors} % Methodology
 \input{sections/transformers.tex}
+\input{sections/methodology.tex}
 
-\section{Methodology}
-
-\section{Experiment N \& Analysis}
+\section{Experiments \& Analysis}\label{sec:ExpRes}
 \input{sections/Experimental_Results.tex}
 
 \section{Conclusion}
