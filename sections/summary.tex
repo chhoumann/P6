@@ -8,8 +8,16 @@ We aim to create an application that allows a user to select a trained model for
 Historically, weather forecasting has always been an important part of day-to-day life, and recently machine and deep learning has gradually become a more common technique for this.
 Popular methods include the application of models such as ARIMA, RNNs, LSTMs and GRUs.
 Each of these models have limitations that make them problematic to use in time series forecasting, however.
-For RNNs, the vanishing gradient problem limits its ability to learn over long time steps as the change of the internal weights will become miniscule, which, for long time steps, effectively prevents further training.
+For models such as RNNs, the vanishing gradient problem limits its ability to learn over long time steps as the change of the internal weights will become miniscule, which, for long time steps, effectively prevents further training.
 LSTMs and GRUs are improvements on RNN models, however they suffer from other issues such as the abundance of parameters that often lead to complex models that take a long time to train.
+The primary model described and used in this project is the transformer model.
+The transformer model has its origins in natural language processing and was introduced in 2017 by \citet{AttentionIsAllYouNeed}. 
+The aim of this model was to overcome some of the issues related to both the vanishing and exploding gradient problem as well as the performance issues seen in some models.
+The primary component of this model is an attention mechanism called multi-head attention, which allows the model to do training in parallel and thus improve performance. 
+The model is originally also comprised of an encoder layer and a decoder layer 
+
+In the paper we will describe a selection of models in detail and show the difference in the performance of these.
+
 
 
 % For example, RNNs have the vanishing gradient problem, and LSTMs and GRUs use many parameters, leading to a complex model.
