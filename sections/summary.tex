@@ -14,11 +14,22 @@ The primary model described and used in this project is the transformer model.
 The transformer model has its origins in natural language processing and was introduced in 2017 by \citet{AttentionIsAllYouNeed}. 
 The aim of this model was to overcome some of the issues related to both the vanishing and exploding gradient problem as well as the performance issues seen in some models.
 The primary component of this model is an attention mechanism called multi-head attention, which allows the model to do training in parallel and thus improve performance. 
-The model is originally also comprised of an encoder layer and a decoder layer 
+The model is originally also comprised of an encoder layer and a decoder layer. 
 
-In the paper we will describe a selection of models in detail and show the difference in the performance of these.
+In the paper, we describe a selection of models in detail and compare the performance of these.
+Furthermore, we also detail the changes and additions we made to the original architecture such that it can be used for time series forecasting.
+Since the transformer model is indifferent to temporal information, we had to convert our input data into some vector representation containing both periodic and non-periodic information.
+This was done following the approach presented in \citet{time2vec}.
+In addition to this, we also removed the decoder layer, since we do not to output any decoded data.
 
-
+We used Deepnote\cite{deepnote} to train the models. 
+This was done for several different reasons; firstly, to achieve similar hardware performance on the training of all the models we used in the project.
+The code for each model was containing in individual Python notebooks on Deepnote.
+This allowed for easy collaboration between the group since Deepnote features a collaborative text editor.
+The data we used are open source and downloaded from Kaggle\cite{kaggle}, and was provided by a variety of different contributors.
+As such, it is worth noting that the data therefore came from arbitrary regions of the world, and that we are unable to verity its legitimacy.
+This should be of no concern, however, since the primary goal was to use meaningfully large and representative datasets for training the models.
+Finally, the models were trained using arbitrary settings for the batch sizes, hyperparameters, learning and dropout rates.
 
 % For example, RNNs have the vanishing gradient problem, and LSTMs and GRUs use many parameters, leading to a complex model.
 
