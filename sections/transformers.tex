@@ -77,9 +77,7 @@ where $TimeToVector(\tau)[i]$ is the \textit{i}th element of $TimeToVector(\tau)
 For $\mathcal{F} = sin, 1 \leq i \leq k$, $\omega_i$ is the frequency and $\varphi_i$ is the phase-shift.
 Since the sine function is periodic, $\tau$ has the same value as $\tau + \frac{2\pi}{\omega_i}$, which helps capture periodic behavior without any feature engineering.
 An example of this is the sine function $sin(\omega\tau + \varphi)$ with $\omega = \frac{2\pi}{7}$ can be used to model weekly patterns, assuming $\tau$ denotes days.
-It is worth noting that the authors of the paper chose the sine function due to experiments showing that models using it outperform models that use non-periodic activation functions instead.
-
-\cite{time2vec}
+It is worth noting that the authors of the paper chose the sine function due to experiments showing that models using it outperform models that use non-periodic activation functions instead.\cite{time2vec}
 
 
 %- forklar hvad dropout layer gør
