@@ -31,7 +31,7 @@ Initially, the datasets, which are stored as CSV files, are loaded into a Jupyte
 After this, the data are lagged with 10 timesteps - each timestep corresponds to a day.
 This number is chosen based on the fact that the climate in the cities from the datasets is relatively stable, and therefore using 10 timesteps seemed reasonable when forecasting.
 Then, the data are split into training and testing data, on which the given model is trained. 
-Finally, the trained models are serialized as Python pickle files - a process known as pickling - which are then exported into the second the component; the web application.
+Finally, the data and trained models are serialized as Python pickle files - a process known as pickling - which are then exported into the second the component; the web application.
 
 The web application is structured as a normal client-server architecture.
 When a client connects to the server, the web page is served to the client which contains the user interface for model selection.
