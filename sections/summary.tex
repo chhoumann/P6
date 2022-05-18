@@ -29,7 +29,7 @@ The first component is responsible for loading data and training the models.
 
 Initially, the datasets, which are stored as .csv files, are loaded into a Jupyter notebook on Deepnote using the Python Pandas framework.
 After this, the data are lagged with 10 timesteps - each timestep corresponds to a day.
-This number is chosen based on the fact that the climate in the regions from the datasets is relatively stable, and therefore using 10 timesteps seemed reasonable when forecasting.
+This number is chosen based on the fact that the climate in the cities from the datasets is relatively stable, and therefore using 10 timesteps seemed reasonable when forecasting.
 Then, the data are split into training and testing data, on which the given model is trained. 
 Finally, the trained models are serialized as Python pickle files - a process known as pickling - which are then exported into the second the component; the web application.
 
