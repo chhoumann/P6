@@ -12,7 +12,8 @@ Data are loaded from CSV files and then passed to the preprocessing stage.
 
 Preprocessing is done by first stripping the Pandas DataFrame of all columns except the target column $y$. In our case, this is the column denoting the temperature.
 
-Next, we add $n$ time lag features. Say $x_{t,y}$ denotes value of the target attribute $y$ at time step $t$ for $N$ sensors. Time lag features are added by, for each $x_{t}$, adding $L=\{1,\dots, n\}$ attributes where $L_{i=1}^n=x_{t-i, y}$.
+Next, we add $n$ time lag features. Let $x_{t,y}$ denote value of the target attribute $y$ at time step $t$ for $N$ sensors. 
+Time lag features are added by adding $L=\{1,\dots, n\}$ attributes where $L_{i=1}^n=x_{t-i, y}$ for each $x_{t}$.```
 
 As we used different Python frameworks for different models, the processing from here depended on the framework. Some required the dataset to be converted to tensors, and others did not.
 Besides this, we also split the data into test and training sets with a $0.33/0.77$ distribution for test and training, respectively.
