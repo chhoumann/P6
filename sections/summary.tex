@@ -24,6 +24,23 @@ Since the transformer model is indifferent to temporal information, we had to co
 This was done following the approach presented in \citet{time2vec}.
 In addition to this, we also removed the decoder layer, since we do not to output any decoded data.
 
+Our application architecture consists of two primary components.
+The first component is responsible for loading data and training the models.
+
+Initially, the datasets, which are stored as .csv files, are loaded into a Jupyter notebook on Deepnote using the Python Pandas framework.
+After this, the data are lagged with 10 timesteps - each timestep corresponds to a day.
+This number is chosen based on the fact that the climate in the regions from the datasets is relatively stable, and therefore using 10 timesteps seemed reasonable when forecasting.
+Then, the data are split into training and testing data, on which the given model is trained. 
+Finally, the trained models are serialized as Python pickle files - a process known as pickling - which are then exported into the second the component; the web application.
+
+The web application is structured as a normal client-server architecture.
+When a client connects to the server, the web page is served to the client which contains the user interface for model selection.
+The models are stored on the server and served to the client whenever the user selects a model through the dropdown menu on the web page.
+Once the client receives the model, the resulting predictions are rendered in a graph on the web page.
+The graph displays the model's predictions where the x-axis are the timesteps and the y-axis is the predicted feature.
+
+% (Maybe the user can upload their own data in the future?)
+
 % TODO: Describe the pipeline/architecture here
 % - our product/innovation - the application/pipeline 
 % 	- results overall - transformer performance vs the other models
