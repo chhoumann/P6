@@ -1,9 +1,3 @@
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{Transformer model diagram}
-\caption{Diagram depicting the architecture of the transformer model from \citet{AttentionIsAllYouNeed}.}
-\label{fig:original transformer}
-\end{figure}
 %\subsubsection{Problems solved by transformers}
 The point of transformers was to overcome the problems faced by the previous state-of-the-art architectures while still including prominent aspects of the RNN and Convolutional Neural Network (CNN) models.
 
@@ -15,6 +9,12 @@ In contrast, one of the benefits of CNNs is that they can be computed concurrent
 Transformers attempt to feature the best of both techniques.
 Transformers can model dependencies over the whole range of the input sequence as easily they can model neighboring sequences. And there are no recurrent connections, allowing efficient computation using parallelization. This is facilitated through the use of the self-attention mechanism.\cite{TransformersScratchPeterbloem}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{Transformer model diagram}
+  \caption{Diagram depicting the architecture of the transformer model from \citet{AttentionIsAllYouNeed}.}
+  \label{fig:original transformer}
+\end{figure}
  
 \subsection{Self-attention Mechanism}
 
