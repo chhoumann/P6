@@ -5,10 +5,10 @@ On a web page, the user is able to select a city for which they want to predict 
 In order to achieve, this we have constructed a pipeline that preprocesses the data, trains our models, and the resulting models are then used to perform the forecasting displayed on a web application. 
 Figure \ref{fig:architecture diagram} shows an overview of the architecture of the pipeline.
 
-In section \ref{sec:data loading and preprocessing}, we start by presenting the data loading and preprocessing phase of the system architecture, and we also motivate our in the transformer model.
-Then, in sections \ref{sec:self-attention mechanism} and \ref{sec:multi-head attention}, we describe preliminary theory about the transformer model--the self-attention mechanism and multi-head attention. 
-Afterwards, in section \ref{sec:time2vec} we introduce the method we use for embedding temporal information in the transformer model. 
-In section \ref{sec:training}, we describe our approach for training the models and how we serialize the trained models into the Python \texttt{pickle} format.
+In section \ref{sec:data loading and preprocessing}, we start by presenting the data loading and preprocessing phase of the system architecture, and we also motivate our interest in the transformer model.
+Then, in sections \ref{sec:self-attention mechanism} and \ref{sec:multi-head attention}, we describe preliminary theory about the transformer model; the self-attention mechanism and multi-head attention module. 
+Afterwards, in section \ref{sec:time2vec} we introduce the method we use for embedding temporal information into the transformer model. 
+In section \ref{sec:training}, we describe our approach to training the models, and how we serialize the formatted data and trained models into the Python \texttt{pickle} format.
 Finally, in section \ref{sec:web app}, we introduce the front-end web application where the user is able to make predictions using our trained models using a simple graphical user interface in a web browser.
 
 \begin{figure*}
