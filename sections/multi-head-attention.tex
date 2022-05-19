@@ -1,0 +1,12 @@
+\subsection{Multi-Head Attention}\label{sec:multi-head attention}
+To improve the self-attention mechanism, the authors of the original transformer model implemented multi-head attention.
+This is a module that runs through the previously described attention mechanism multiple times and in parallel.
+It then concatenates the attention weights of all the independent self-attention layers. 
+
+\begin{align*}
+MultiHead(Q, K, V) = Concat(h_1, \ldots, h_i)W^O \\
+\text{where }h_i = Attention(QW^Q_i, KW^K_i, VW^V_i) 
+\end{align*}
+
+In the model we use, the weights are then passed through a dense layer in which a non-linear transformation is applied using the \textit{ReLU} activation function rather than a linear transformation as described in \citet{AttentionIsAllYouNeed}. 
+Once this computation is completed, the result is the final multi-head attention weight matrix. \cite{AttentionIsAllYouNeed}
