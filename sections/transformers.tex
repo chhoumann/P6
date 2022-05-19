@@ -16,7 +16,7 @@ Transformers can model dependencies over the whole range of the input sequence a
   \label{fig:original transformer}
 \end{figure}
  
-\subsection{Self-attention Mechanism}
+\subsection{Self-attention Mechanism}\label{sec:self-attention mechanism}
 
 
 With self-attention, the model can learn to associate different input.
@@ -38,7 +38,7 @@ We use this technique as it is faster and more space-efficient as argued in \cit
 
 Because the dot product can result in values between negative and positive infinity, the \textit{softmax} activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence. \cite{AttentionIsAllYouNeed}
 
-\subsection{Multi-Head Attention} \label{sec:multi-head attention}
+\subsection{Multi-Head Attention}\label{sec:multi-head attention}
 To improve the self-attention mechanism, the authors of the original transformer model implemented multi-head attention.
 This is a module that runs through the previously described attention mechanism multiple times and in parallel.
 It then concatenates the attention weights of all the independent self-attention layers. 
@@ -51,7 +51,7 @@ MultiHead(Q, K, V) = Concat(h_1, \ldots, h_i)W^O \\
 In the model we use, the weights are then passed through a dense layer in which a non-linear transformation is applied using the \textit{ReLU} activation function rather than a linear transformation as described in \citet{AttentionIsAllYouNeed}. 
 Once this computation is completed, the result is the final multi-head attention weight matrix. \cite{AttentionIsAllYouNeed}
 
-\subsection{Time embedding}
+\subsection{Time embedding}\label{sec:time2vec}
 The transformer model is indifferent to temporal information.
 Therefore, in order to embed our temporal data, we convert the input data to a vector representation.
 Furthermore, vector representations are used for many different tasks, making a vector representation for time easily usable with a variety of different architectures.
