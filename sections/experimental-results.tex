@@ -44,13 +44,13 @@ $$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
 \subsection{Benchmarks}
 Below is a comparison of the best results computed from the following models. These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
 \begin{itemize}
-    \item ARIMA: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
-    \item GRU: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
+    \item ARIMA\cite{ARIMA-book}: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
+    \item GRU\cite{GRU-paper}: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
     \item LinReg: A standard linear regression model.
-    \item LSTM: A model modifying the RNN memory system in order to combat the common vanishing gradient problem.
-    \item MLP: The classic neural network used for regression prediction problems.
-    \item RNN: The standard recurrent neural network model.
-    \item Transformer: A state of art model used in NLP, modified to work for time series forecasting.
+    \item LSTM\cite{LSTM-paper}: A model modifying the RNN memory system in order to combat the common vanishing gradient problem.
+    \item MLP\cite{MLP-paper}: The classic neural network used for regression prediction problems.
+    \item RNN\cite{RNN-paper}: The standard recurrent neural network model.
+    \item Transformer\cite{AttentionIsAllYouNeed}: A state of art model used in NLP, modified to work for time series forecasting.
 \end{itemize}
 
 \subsection{Implementation Details}
