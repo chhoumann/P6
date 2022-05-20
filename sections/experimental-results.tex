@@ -3,9 +3,9 @@
     \caption {Summary of gathered results---the best results are highlighted in bold and underlined.} \label{tab:ResultsTable} 
     \begin{tabular}{|l|r|r|r|r|r|}
     \hline
-    \multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{l|}{Szeged} \\ \hline
+    \multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{c|}{Szeged} \\ \hline
     ARIMA                        & 14.9971                     & 4.1595                          & 7.4077                     & 8.4354                    & 9.5993                      \\ \hline
-    GRU                          & 12.1855                     & 13.0872                         & 3.8810                     & 3.5758                    & 5.0462                      \\ \hline
+    GRU                          & 12.1855                     & 3.6176                          & 3.8810                     & 3.5758                    & 5.0462                      \\ \hline
     LinReg                       & 13.465                      & 3.6610                          & 7.8551                     & 8.4248                    & 9.5464                      \\ \hline
     LSTM                         & 15.5649                     & 3.6178                          & 4.2537                     & 3.6141                    & 5.1415                      \\ \hline
     MLP                          & 15.3179                     & 3.7288                          & 7.5508                     & 8.6366                    & 10.6112                     \\ \hline
@@ -14,6 +14,33 @@
     \end{tabular}
 \end{table*}
 
+\begin{table*}[t]
+    \centering
+    \caption {Results normalized using standard deviation and sorted by lowest summed error in ascending order for each dataset.} \label{tab:ResultsTableSummed} 
+    \begin{tabular}{|l|r|r|r|r|r|r|}
+    \hline
+        \multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{c|}{Szeged} & \multicolumn{1}{c|}{Sum} \\ \hline
+        Transformer & 0.4872 & 0.4971 & 0.3267 & 0.1365 & 0.1890 & {\ul{\textbf{1.6365}}} \\ \hline
+        GRU & 0.7955 & 0.9702 & 0.5140 & 0.4140 & 0.4756 & {\ul{\textbf{3.1693}}} \\ \hline
+        RNN & 0.7331 & 0.9695 & 0.9105 & 0.3530 & 0.4605 & {\ul{\textbf{3.4266}}} \\ \hline
+        LSTM & 1.0161 & 0.9702 & 0.5633 & 0.4185 & 0.4845 & {\ul{\textbf{3.4527}}} \\ \hline
+        LinReg & 0.8790 & 0.9818 & 1.0403 & 0.9755 & 0.8997 & {\ul{\textbf{4.7763}}} \\ \hline
+        ARIMA & 0.9791 & 1.1155 & 0.9810 & 0.9767 & 0.9046 & {\ul{\textbf{4.9570}}} \\ \hline
+        MLP & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & {\ul{\textbf{5.0000}}} \\ \hline
+    \end{tabular}
+\end{table*}
+
+In this section, we start by presenting the datasets used to conduct the experiments.
+Afterwards, we list the baselines used in the experiments and describe general challenges involved in time series forecasting.
+Finally, we present the results from the experiments and analyse them.
+
+- Introduction 
+- Present the results and the table
+- Say that we have proved that the transformer is the best model for time series forecasting (out of the models we have tested, given our datasets and the hyperparameters we used within the computational limitations imposed on us.)
+    - Explain why it is better 
+    - 
+
+    
 \subsection{Datasets}
 The following datasets have been used when conducting experiments on the various machine learning algorithms used in this paper.
 \begin{itemize}
@@ -38,11 +65,12 @@ Szeged     & 96453                          & 1 Hour                            
 \end{tabular}
 \end{table*}
 
-This paper uses root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
+We have used the root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
 $$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
 
-\subsection{Benchmarks}
-Below is a comparison of the best results computed from the following models. These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
+\subsection{Baselines}
+
+These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
 \begin{itemize}
     \item ARIMA\cite{ARIMA-book}: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
     \item GRU\cite{GRU-paper}: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
@@ -53,9 +81,14 @@ Below is a comparison of the best results computed from the following models. Th
     \item Transformer\cite{AttentionIsAllYouNeed}: A state of art model used in NLP, modified to work for time series forecasting.
 \end{itemize}
 
-\subsection{Implementation Details}
-All experiments included in this report have been conducted on Deepnote workspaces\cite{deepnote}.
-
 \subsection{Results}
 Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
-Note how the transformer model is the best performing model for 4/5 of the used datasets.
+As can be seen, the transformer performs the best in all datasets. The reason for this is two-fold. 
+The first reason is the time embedding component in the transformer, which allows the transformer to account for both periodic and non-periodic data and thus account for seasonality in the data. 
+The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
+
+RNNs are able to account for seasonality, but as described in section \ref{subsec:RNNModels}, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but analysis of this issue is out of scope for the paper.
+ 
+LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
+
+Linear regression and MLP are behaving as expected.
