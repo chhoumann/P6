@@ -89,6 +89,6 @@ The second reason is the multi-head attention mechanism which, combined with the
 
 RNNs are able to account for seasonality, but as described in xx, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but analysis of this issue is out of scope for the paper.
  
-LSTMs and GRUs are also able to account for seasonality, but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
+LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
 
 Linear regression and MLP are behaving as expected.
