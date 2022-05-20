@@ -85,7 +85,7 @@ These models are taken from statistical, machine learning, and deep learning to 
 Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
 As can be seen, the transformer performs the best in all datasets. The reason for this is two-fold. 
 The first reason is the time embedding component in the transformer, which allows the transformer to account for both periodic and non-periodic data and thus account for seasonality in the data. 
-The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long term dependencies. 
+The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
 
 RNNs are able to account for seasonality, but as described in xx they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but analysis of this issue is out of scope for the paper.
  
