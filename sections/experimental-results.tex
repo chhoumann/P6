@@ -16,17 +16,17 @@
 
 \begin{table*}[t]
     \centering
-    \caption {Results sorted by lowest summed error in ascending order for each dataset.} \label{tab:ResultsTableSummed} 
+    \caption {Results normalized using standard deviation and sorted by lowest summed error in ascending order for each dataset.} \label{tab:ResultsTableSummed} 
     \begin{tabular}{|l|r|r|r|r|r|r|}
     \hline
         \multicolumn{1}{|c|}{Models} & \multicolumn{1}{c|}{Austin} & \multicolumn{1}{c|}{Bangladesh} & \multicolumn{1}{c|}{Delhi} & \multicolumn{1}{c|}{Jena} & \multicolumn{1}{c|}{Szeged} & \multicolumn{1}{c|}{Sum} \\ \hline
-        Transformer & 0.4872 & 0.4971 & 0.3267 & 0.1365 & 0.1890 & \textbf{1.6365} \\ \hline
-        GRU & 0.7955 & 0.9702 & 0.5140 & 0.4140 & 0.4756 & \textbf{3.1693} \\ \hline
-        RNN & 0.7331 & 0.9695 & 0.9105 & 0.3530 & 0.4605 & \textbf{3.4266} \\ \hline
-        LSTM & 1.0161 & 0.9702 & 0.5633 & 0.4185 & 0.4845 & \textbf{3.4527} \\ \hline
-        LinReg & 0.8790 & 0.9818 & 1.0403 & 0.9755 & 0.8997 & \textbf{4.7763} \\ \hline
-        ARIMA & 0.9791 & 1.1155 & 0.9810 & 0.9767 & 0.9046 & \textbf{4.9570} \\ \hline
-        MLP & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & \textbf{5.0000} \\ \hline
+        Transformer & 0.4872 & 0.4971 & 0.3267 & 0.1365 & 0.1890 & {\ul{\textbf{1.6365}}} \\ \hline
+        GRU & 0.7955 & 0.9702 & 0.5140 & 0.4140 & 0.4756 & {\ul{\textbf{3.1693}}} \\ \hline
+        RNN & 0.7331 & 0.9695 & 0.9105 & 0.3530 & 0.4605 & {\ul{\textbf{3.4266}}} \\ \hline
+        LSTM & 1.0161 & 0.9702 & 0.5633 & 0.4185 & 0.4845 & {\ul{\textbf{3.4527}}} \\ \hline
+        LinReg & 0.8790 & 0.9818 & 1.0403 & 0.9755 & 0.8997 & {\ul{\textbf{4.7763}}} \\ \hline
+        ARIMA & 0.9791 & 1.1155 & 0.9810 & 0.9767 & 0.9046 & {\ul{\textbf{4.9570}}} \\ \hline
+        mlp & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & {\ul{\textbf{5.0000}}} \\ \hline
     \end{tabular}
 \end{table*}
 
@@ -87,7 +87,7 @@ As can be seen, the transformer performs the best in all datasets. The reason fo
 The first reason is the time embedding component in the transformer, which allows the transformer to account for both periodic and non-periodic data and thus account for seasonality in the data. 
 The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
 
-RNNs are able to account for seasonality, but as described in subsection \ref{subsec:RNNModels} they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but analysis of this issue is out of scope for the paper.
+RNNs are able to account for seasonality, but as described in xx, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but analysis of this issue is out of scope for the paper.
  
 LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
 
