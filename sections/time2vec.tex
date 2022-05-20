@@ -1,0 +1,25 @@
+\subsection{Time embedding}\label{sec:time2vec}
+The transformer model is indifferent to temporal information.
+Therefore, in order to embed our temporal data, we convert the input data to a vector representation.
+Furthermore, vector representations are used for many different tasks, making a vector representation for time easily usable with a variety of different architectures.
+
+To this end, we use the approach described in \citet{time2vec}. 
+This paper conveys two main ideas.
+Firstly, the time representation should contain both periodic and non-periodic information.
+Secondly, the time representation should not be affected by different time increments and long time horizons.  
+
+For a given scalar notion of time $\tau$, TimeToVector of $\tau$ is a vector of size $k + 1$ with the following definition:
+$$
+TimeToVector(\tau)[i] = 
+\begin{cases}
+  \omega_i \tau + \varphi_i, & \mbox{if $x<0$}.\\
+  \mathcal{F}(\omega_i \tau + \varphi_i), & \mbox{if $1 \le i \le k$}.
+\end{cases}
+$$
+
+where $TimeToVector(\tau)[i]$ is the \textit{i}th element of $TimeToVector(\tau)$, $\mathcal{F}$ is a periodic activation function (the sine function, in our case), and $\omega_i$ and $\varphi_i$ are learnable parameters. 
+
+For $\mathcal{F} = sin, 1 \leq i \leq k$, $\omega_i$ is the frequency and $\varphi_i$ is the phase-shift.
+Since the sine function is periodic, $\tau$ has the same value as $\tau + \frac{2\pi}{\omega_i}$, which helps capture periodic behavior without any feature engineering.
+An example of this is the sine function $sin(\omega\tau + \varphi)$ with $\omega = \frac{2\pi}{7}$ can be used to model weekly patterns, assuming $\tau$ denotes days.
+It is worth noting that the authors of the paper chose the sine function due to experiments showing that models using it outperform models that use non-periodic activation functions instead.\cite{time2vec}

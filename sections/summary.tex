@@ -1,0 +1,57 @@
+\section*{Summary}
+In this project, we are interested in doing time series forecasting using various machine and deep learning models.
+The goal is to compare their performance, both on their accuracy as well as their computation time when training on different datasets.
+Time series forecasting concerns itself with predicting future behavior of some phenomenon based on existing historical data.
+In our case, this would be predicting future temperatures based on existing historical data from different citys in the world.
+We aim to create an application that allows a user to select a trained model for use in predicting the temperature of a  city at some specified timestamp.
+
+\subsection{Why Machine Learning}
+Historically, weather forecasting has always been an important part of day-to-day life, and recently machine and deep learning has gradually become a more common technique for this.
+Popular methods include the application of models such as ARIMA, RNNs, LSTMs and GRUs.
+Each of these models have limitations that make them problematic to use in time series forecasting, however.
+For models such as RNNs, the vanishing gradient problem limits its ability to learn over long time steps as the change of the internal weights will become miniscule, which, for long time steps, effectively prevents further training.
+LSTMs and GRUs are improvements on RNN models, however they suffer from other issues such as the abundance of parameters that often lead to complex models that take a long time to train.
+The primary model described and used in this project is the transformer model.
+The transformer model has its origins in natural language processing and was introduced in 2017 by \citet{AttentionIsAllYouNeed}. 
+The aim of this model was to overcome some of the issues related to both the vanishing and exploding gradient problem as well as the performance issues seen in some models.
+The primary component of this model is an attention mechanism called multi-head attention, which allows the model to do training in parallel and thus improve performance. 
+The model is originally also comprised of an encoder layer and a decoder layer. 
+
+\subsection{Our work}
+In the paper, we describe a selection of models in detail and compare the performance of these.
+Furthermore, we also detail the changes and additions we made to the original architecture such that it can be used for time series forecasting.
+Since the transformer model is indifferent to temporal information, we had to convert our input data into some vector representation containing both periodic and non-periodic information.
+This was done following the approach presented in \citet{time2vec}.
+In addition to this, we also removed the decoder layer, since we do not to output any decoded data.
+
+Our application architecture consists of two primary components.
+The first component is responsible for loading data and training the models.
+
+Initially, the datasets, which are stored as CSV files, are loaded into a Jupyter notebook on Deepnote using the Python Pandas framework.
+After this, the data are lagged with 10 timesteps - each timestep corresponds to a day.
+This number is chosen based on the fact that the climate in the cities from the datasets is relatively stable, and therefore using 10 timesteps seemed reasonable when forecasting.
+Then, the data are split into training and testing data, on which the given model is trained. 
+Finally, the data and trained models are serialized as Python pickle files - a process known as pickling - which are then exported into the second the component; the web application.
+
+The web application is structured as a normal client-server architecture.
+When a client connects to the server, the web page is served to the client which contains the user interface for model selection.
+The models are stored on the server and served to the client whenever the user selects a model through the dropdown menu on the web page.
+Once the client receives the model, the resulting predictions are rendered in a graph on the web page.
+The graph displays the model's predictions where the x-axis are the timesteps and the y-axis is the predicted feature.
+
+% (Maybe the user can upload their own data in the future?)
+
+\subsection{Collaboration}
+We used Deepnote\cite{deepnote} to train the models. 
+This was done for several different reasons; firstly, to achieve similar hardware performance on the training of all the models we used in the project.
+The code for each model was containing in individual Python notebooks on Deepnote.
+This allowed for easy collaboration between the group since Deepnote features a collaborative text editor.
+
+The data we used are open source and downloaded from Kaggle\cite{kaggle}, and was provided by a variety of different contributors.
+As such, it is worth noting that the data therefore came from arbitrary citys of the world, and that we are unable to verity its legitimacy.
+This should be of no concern, however, since the primary goal was to use meaningfully large and representative datasets for training the models.
+Finally, the models were trained using arbitrary settings for the batch sizes, hyperparameters, learning and dropout rates.
+
+
+\subsection{Conclusion/ending}
+% TODO: Conclusion goes here

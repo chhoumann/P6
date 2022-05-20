@@ -1,24 +1,17 @@
 \input{setup/preamble.tex}
 
 \begin{document}
+
 Hello Yunyao,
 
 This is our latest report.
 
 We have some questions we'd like to highlight here.
 
-\begin{itemize}
-    \item If you add lag features to a time series, can you still call the forecasting univariate? We are uncertain, as we'd still only consider one variable over time (mean temperature), but since we add more features, we become uncertain.
-    \item Should we add data sets to the appendix? And if we should, how do we reference them?
-    \item Should we explicitly describe back propagation?
-\end{itemize}
+\section{Changelog}
 
-\section{Changelog - please review these sections}
-\begin{itemize}
-    \item Preliminaries
-    \item MLP in Related works
-    \item Transformer theory section
-\end{itemize}
+
+\include{sections/summary.tex}
 
 \newpage
 
@@ -33,9 +26,11 @@ We have some questions we'd like to highlight here.
     \IEEEauthorblockN{Patrick F. Østergaard}
 }
 
+
 \maketitle
 
 \begin{abstract}
+\input{sections/abstract.tex}
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -45,19 +40,26 @@ machine learning, weather forecasting
 \section{Introduction}
 \input{sections/introduction.tex}
 
-\section{Preliminaries}
-\input{sections/preliminaries.tex}
-
 \section{Related work}\label{sec:relatedwork}
 \input{sections/statistical-models.tex}
 \input{sections/machine-learning.tex}
 \input{sections/deep-learning.tex}
-\input{sections/transformers.tex}
 
-\section{Methodology}
+\section{Preliminaries}
+\input{sections/preliminaries.tex}
 
-\section{Experiment N \& Analysis}
-\input{sections/Experimental_Results.tex}
+\section{System Architecture} % Methodology
+\input{sections/system-architecture.tex}
+\input{sections/data-loading.tex}
+\input{sections/self-attention.tex}
+\input{sections/multi-head-attention.tex}
+\input{sections/time2vec.tex}
+\input{sections/transformer-encoder.tex}
+\input{sections/training.tex}
+\input{sections/front-end.tex}
+
+\section{Experiments \& Analysis}\label{sec:ExpRes}
+\input{sections/experimental-results.tex}
 
 \section{Conclusion}
 
