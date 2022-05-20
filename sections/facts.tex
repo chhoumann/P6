@@ -1,0 +1,15 @@
+Using weather data gathered from different cyber physical systems in the form of weather sensors, we have trained and compared several different techniques for time series forecasting.
+Our main focus was to show that the transformer would outperform previous state-of-the-art statistical and machine learning techniques.
+As can be seen in the \nameref{sec:ExpRes} section, the transformer indeed has the lowest RMSE error compared to the other models on every dataset. 
+It is worth noting that the transformer used here deviates slightly from the original transformer model proposed by \citet{AttentionIsAllYouNeed}, as we have removed the decoder and implemented the time embedding module presented by \citet{time2vec}.
+These are described in detail in section \ref{sec:system architecture}.
+
+We have developed a web application to show these results in a simple graphical user interface. 
+The user of the application is able to make temperature predictions by selecting a model and dataset from a dropdown menu. 
+
+In the future, it would be interesting to study the reason for the RNN outperforming the LSTM model.
+Based on the \nameref{sec:relatedwork} section, we expected the LSTM model to outperform the RNN model on these larger datasets.
+One could run these on more and larger datasets to investigate whether this is still the case. 
+In addition, it could also be beneficial to experiment further with hyperparameter tuning for all models.
+
+In conclusion, the results from our experiments present new evidence suggesting that the transformer is better suited for time series forecasting than previous state-of-the-art techniques.
