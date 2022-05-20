@@ -92,3 +92,8 @@ RNNs are able to account for seasonality, but as described in section \ref{subse
 LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
 
 Linear regression and MLP are behaving as expected.
+
+Standard deviation normalization was performed to account for the variability in the temperature depending on the region of the world in which the temperature data is captured. 
+For example, data captured close to the equator may be higher and therefore the RMSE is also amplified in equal proportion. 
+In order to compute the values seen in table \ref{tab:ResultsTableSummed}, the model errors from table \ref{tab:ResultsTable} were divided by the standard deviation calculated for each dataset.
+The sum column shows the overall performance for each model, where the lowest number represents the best-performing model. 
