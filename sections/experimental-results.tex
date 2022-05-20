@@ -14,6 +14,17 @@
     \end{tabular}
 \end{table*}
 
+In this section, we start by presenting the datasets used to conduct the experiments.
+Afterwards, we list the baselines used in the experiments and describe general challenges involved in time series forecasting.
+Finally, we present the results from the experiments and analyse them.
+
+- Introduction 
+- Present the results and the table
+- Say that we have proved that the transformer is the best model for time series forecasting (out of the models we have tested, given our datasets and the hyperparameters we used within the computational limitations imposed on us.)
+    - Explain why it is better 
+    - 
+
+    
 \subsection{Datasets}
 The following datasets have been used when conducting experiments on the various machine learning algorithms used in this paper.
 \begin{itemize}
@@ -38,11 +49,12 @@ Szeged     & 96453                          & 1 Hour                            
 \end{tabular}
 \end{table*}
 
-This paper uses root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
+We have used the root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
 $$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
 
-\subsection{Benchmarks}
-Below is a comparison of the best results computed from the following models. These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
+\subsection{Baselines}
+
+These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
 \begin{itemize}
     \item ARIMA\cite{ARIMA-book}: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
     \item GRU\cite{GRU-paper}: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
@@ -52,9 +64,6 @@ Below is a comparison of the best results computed from the following models. Th
     \item RNN\cite{RNN-paper}: The standard recurrent neural network model.
     \item Transformer\cite{AttentionIsAllYouNeed}: A state of art model used in NLP, modified to work for time series forecasting.
 \end{itemize}
-
-\subsection{Implementation Details}
-All experiments included in this report have been conducted on Deepnote workspaces\cite{deepnote}.
 
 \subsection{Results}
 Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
