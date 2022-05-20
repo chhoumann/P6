@@ -6,6 +6,8 @@ import sklearn
 import torch
 import torch.nn as nn
 from classes.lstm import Optimization
+from zipfile import ZipFile
+from pathlib import Path
 
 LAG_FEATURES = 10
 
@@ -25,6 +27,13 @@ def load_model():
 
     with open('saved_rnn.pkl', 'rb') as file:
         models["RNN"] = pickle.load(file)
+        
+    if (not Path("./saved_arima.pkl").is_file()) and Path("./saved_arima.zip").is_file():
+        with ZipFile("./saved_arima.zip", 'r') as zipObj:
+            zipObj.extractall()
+
+    with open('saved_arima.pkl', 'rb') as file:
+        models['ARIMA'] = pickle.load(file)
 
     return models
 
@@ -43,7 +52,7 @@ def show_predict_page():
     )
 
     models = (
-        # "ARIMA",
+        "ARIMA",
         "GRU",
         "Linear Regression",
         "LSTM",
@@ -68,6 +77,8 @@ def show_predict_page():
             train_loader = torch.utils.data.DataLoader(X, batch_size=64, shuffle=False, drop_last=True)
             pred, values = run_model.evaluate(train_loader, batch_size=1, n_features=LAG_FEATURES)
             pred = pd.DataFrame([pred[i][0] for i in range(len(pred))])
+        if model == "ARIMA":
+            pred = run_model.predict()
 
         st.line_chart(pred)
 
