@@ -93,4 +93,7 @@ LSTMs and GRUs can also account for seasonality but are expected to perform bett
 
 Linear regression and MLP are behaving as expected.
 
-In table \ref{tab:ResultsTableSummed} the normalized results can be seen. The results are normalized using the standard deviation and mean in order to scale the data to account for the variability in the temperature depending on the region of the world in which the temperature data is captured. For example, data captured close to the equator may be higher and therefore the RMSE is also amplified equal proportion. The sum column shows the overall performance for each model, where the lowest number represents the best performing model. The normalized data shows the same as table \ref{tab:ResultsTable}, which is that the transformer is the best performing model by a large margin.
+Standard deviation normalization was performed to account for the variability in the temperature depending on the region of the world in which the temperature data is captured. 
+For example, data captured close to the equator may be higher and therefore the RMSE is also amplified in equal proportion. 
+In order to compute the values seen in table \ref{tab:ResultsTableSummed}, the model errors from table \ref{tab:ResultsTable} were divided by the standard deviation calculated for each dataset.
+The sum column shows the overall performance for each model, where the lowest number represents the best-performing model. 
