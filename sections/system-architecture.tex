@@ -8,7 +8,8 @@ Figure \ref{fig:architecture diagram} shows an overview of the architecture of t
 
 Note that since the transformer model is the best performing model, which is shown in section \ref{sec:ExpRes}, this is the model that we chose to include and describe as part of the pipeline. Regardless of this fact, the other models are used in the pipeline in a similar fashion.
 
-In section \ref{sec:data loading and preprocessing}, we start by presenting the data loading and preprocessing phase of the system architecture, and we also motivate our interest in the transformer model.
+In section \ref{sec:data loading and preprocessing}, we start by presenting the data loading and preprocessing phase of the system architecture
+Afterwards, we motivate our interest in the transformer model in section \ref{sec:transformer intro}.
 Then, in sections \ref{sec:self-attention mechanism} and \ref{sec:multi-head attention}, we describe preliminary theory about the transformer model; the self-attention mechanism and multi-head attention module. 
 Afterwards, in section \ref{sec:time2vec} we introduce the method we use for embedding temporal information into the transformer model. 
 In section \ref{sec:training}, we describe our approach to training the models, and how we serialize the formatted data and trained models into the Python \texttt{pickle} format.
