@@ -15,4 +15,5 @@ A more recent, simplified version of the LSTM model, is the gated recurrent netw
 GRU merges the two state vectors in the LSTM into a single state vector and includes just a single gate controller, called the update gate, that controls both the forget gate and the input gate.
 It also includes a reset gate that controls what should be used from the previous hidden state to compute new hidden state content.
 Finally, instead of an output gate, which is present in the LSTM, the GRU outputs the entire state vector at every time step\cite{RNNPaper} \cite{hands-onML}.
+
 Although LSTM and GRU models show significant improvements over regular RNN models in their ability to learn long term patterns, they are still inefficient at learning longer patterns as their inherent sequential nature can cause memory constraints\cite{AttentionIsAllYouNeed}. 
