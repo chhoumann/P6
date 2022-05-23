@@ -1,19 +1,17 @@
 Using weather data gathered from different cyber physical systems in the form of weather sensors, we have trained and compared several different techniques for time series forecasting.
 Our main focus was to show that the transformer would outperform previous state-of-the-art statistical and machine learning techniques.
-As can be seen in the \nameref{sec:ExpRes} section, the transformer indeed has the lowest RMSE error compared to the other models on every dataset. 
-It is worth noting that the transformer used here deviates slightly from the original transformer model proposed by \citet{AttentionIsAllYouNeed}, as we have removed the decoder and implemented the time embedding module presented by \citet{time2vec}.
+As can be seen in the \nameref{sec:ExpRes} section, the transformer indeed has the lowest RMSE error on every data compared to the other models. 
+It is worth noting that the transformer used here deviates slightly from the original transformer model proposed by \citet{AttentionIsAllYouNeed}, as the decoder layer has been removed, and the time embedding module presented by \citet{time2vec} has been implemented.
 These are described in detail in section \ref{sec:system architecture}.
 
 We have developed a web application to show the predictions from all the trained models in a simple graphical user interface. 
 The user of the application is able to make temperature predictions by selecting a model and dataset from a dropdown menu. 
 
-As mentioned in section \ref{sec:results}, the RNN model outperformed LSTM model on all datasets except the Delhi dataset.
-We expected LSTM to outperform the RNN model for all datasets, so in the future, it would be interesting to study the reason for the RNN outperforming the LSTM model.
-Based on the \nameref{sec:relatedwork} section, we expected the LSTM model to outperform the RNN model on these larger datasets.
-One could run these on more and larger datasets to investigate whether this is still the case. 
-In addition, it could also be beneficial to experiment further with hyperparameter tuning for all models.
+As mentioned in section \ref{sec:results}, the RNN model outperformed the LSTM model on all datasets except the Delhi dataset.
+Based on the \nameref{sec:relatedwork} section, we expected the LSTM model to outperform the RNN model on all datasets.
+One could run these two models on more and larger datasets to investigate whether this would still be the case. 
+In addition, it could also be interesting to experiment further with hyperparameter tuning for all models.
 
 In the future, it would also be beneficial to update the web application to retrain the models daily with new weather data. 
-It would also be beneficial to update the models to do multivariate forecasting.
 
 In conclusion, the results from our experiments present new evidence suggesting that the transformer is better suited for time series forecasting than previous state-of-the-art techniques.
