@@ -20,8 +20,11 @@ For example, RNNs have the vanishing gradient problem, and LSTMs and GRUs use ma
 More recently, in the field of natural language processing (NLP), the transformer model has shown great potential and does not suffer from similar issues as the aforementioned methods, and is even able to outperform them \cite{AttentionIsAllYouNeed}.
 Because of this, we wish to compare the performance of the previously used methods to the more recent transformer model when performing univariate time series weather forecasting. Our goal is to determine whether this model is able to also outperform the previously used methods in time series forecasting.
 
-We use the existing transformer model, originally intended for NLP, and modified it so that it can be used reliably for time series forecasting.
-To this end, have developed a web application that allows the user to predict the weather at a given date using both the modified transformer as well as the previously described models.
+The original transformer model was intended for use in NLP.
+We use a modified version that can be used reliably for time series forecasting.
+This architecture has been used to train a model on weather datasets from different cities around the world.
+Its performance was then compared to the performance of other forecasting models on the same datasets. 
+Using the results from this, we have developed a web application that allows the user to predict the weather at a given date using all the trained models.
 This is done through a pipeline; data from various datasets, described in section \ref{sec:ExpRes}, first go through a preprocessing phase where they are filtered and prepared for use.
 After this, they are used in the desired model, and finally the resulting prediction is displayed to the user on the website.  
 
