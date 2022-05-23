@@ -74,15 +74,17 @@ These models are taken from statistical, machine learning, and deep learning to 
     \item \textbf{Transformer}\cite{AttentionIsAllYouNeed}: A state of art model used in NLP, modified to work for time series forecasting.
 \end{itemize}
 
-\subsection{Results}
+\subsection{Results}\label{sec:results}
 Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
 As can be seen, the transformer performs the best in all datasets. The reason for this is two-fold. 
 The first reason is the time embedding component in the transformer, which allows the transformer to account for both periodic and non-periodic data and thus account for seasonality in the data. 
 The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
 
-RNNs are able to account for seasonality, but as described in section \ref{subsec:RNNModels}, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, but we will look into this issue in our future work.
- 
-LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. There are, however, outliers as the two models in our experiment are being outperformed on all datasets except for the Delhi dataset. This relates to the previously mentioned issue.
+RNNs are able to account for seasonality, but as described in section \ref{subsec:RNNModels}, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, however, we will look into this issue in our future work.
+
+LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. 
+However, the LSTM model in our experiment is outperformed by the RNN model on all datasets except for the Delhi dataset.
+We expected LSTM to perform similarly to GRU and consequently, we expected it to outperform the RNN model.
 
 Linear regression and MLP are behaving as expected.
 
