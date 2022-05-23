@@ -1,7 +1,5 @@
 \subsection{Self-attention Mechanism}\label{sec:self-attention mechanism}
-
-
-With self-attention, the model can learn to associate different input.
+With self-attention, the model can learn to associate different inputs.
 To achieve this, three input vectors are needed - queries and keys of dimension $d_k$, and values of dimension $d_v$.
 The attention function maps the query and the set of key-value pairs to some output, where the output is a weighted sum of the values.
 The weight of each value is calculated using a compatibility function.
@@ -16,6 +14,6 @@ $$
 
 Additive attention and dot product attention are among some of the most common attention functions used.
 For the purposes of this project, we decided to use the scaled dot product attention technique with the scaling factor $\frac{1}{\sqrt{d_k}}$.
-We use this technique as it is faster and more space-efficient as argued in \citet{AttentionIsAllYouNeed}.
+We use this technique as it is faster and more space-efficient as argued by \citet{AttentionIsAllYouNeed}.
 
 Because the dot product can result in values between negative and positive infinity, the \textit{softmax} activation function is used to map values to the interval $[0,1]$, and to ensure that they sum to $1$ over the entire sequence. \cite{AttentionIsAllYouNeed}

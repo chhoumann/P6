@@ -1,14 +1,19 @@
 \subsection{Deep learning}
 Another approach to time series forecasting is the use of neural networks.
 \subsubsection{MLP models}
-A Multilayer Perceptron consists of an input and output layer as well as one or more hidden layers. These hidden layers are made up of multiple neurons. 
-Since MLPs are feedforward algorithms, the inputs are combined with an initial weight in a weighted sum and then passed to the activation function. 
+A multilayer perceptron (MLP) consists of an input and output layer as well as one or more hidden layers. These hidden layers are made up of multiple neurons. 
+Since MLPs are feedforward networks, the inputs are combined with an initial weight in a weighted sum and then passed to the activation function. 
 Each of these hidden layers then feeds their output and their internal representation of the data to the next layer in the network until the output layer is reached.\cite{bentoMultilayerPerceptronExplained2021}
 
 \subsubsection{RNN models} \label{subsec:RNNModels}
-A popular model is to use recurrent neural networks and derivations of this model. Recurrent neural networks are similar to feedforward networks, but have memory of the past which is achieved through a hidden state which is passed recurrently through from previous layer as input to the succeeding layer. This makes it capable of learning short patterns. 
-A primary issue with RNNs are the vanishing gradient and the exploding gradient problem with longer patterns, which more powerful models seek to improve upon. \cite{AIModernApproach}\cite{hands-onML}
+A popular model is to use recurrent neural networks (RNNs) and derivations of this model. RNNs are similar to feedforward networks, but have memory of the past. 
+This is achieved through a hidden state, which is passed recurrently as input to a succeeding layer from a previous layer. This makes it capable of learning short patterns. 
+A primary issue with RNNs are the vanishing gradient and the exploding gradient problems with longer patterns, which more powerful models seek to improve upon. \cite{AIModernApproach}\cite{hands-onML}
 
-To combat the issues of the vanishing gradient and exploding gradient problem, the Long short-term memory (LSTM) model was introduced by Sepp Hochreiter et. al. The basic principle of this model is the ability to bridge time intervals across longer time steps, which is achieved through the maintenance, updating and filtering of information into a cell state, which propagates through the entire network\cite{LSTMPaper}. 
-A more recent, simplified version of the LSTM model, is the gated recurrent network (GRU), proposed by Kyunghyun Cho et al. which merges the two state vectors in the LSTM into a single state vector, includes just a single gate controller that controls both the forget gate and the input gate and instead of an output gate which is present in the LSTM, the GRU outputs the entire state vector at every time step\cite{RNNPaper} \cite{hands-onML}.
+To combat the issues of the vanishing gradient and exploding gradient problems, the long short-term memory (LSTM) model was introduced by \citet{LSTMPaper}. The basic principle of this model is the ability to bridge time intervals across longer time steps, which is achieved through the maintenance, updating and filtering of information into a cell state, which propagates through the entire network\cite{LSTMPaper}. 
+A more recent, simplified version of the LSTM model, is the gated recurrent network (GRU), proposed by \citet{GRU-paper}.
+GRU merges the two state vectors in the LSTM into a single state vector and includes just a single gate controller, called the update gate, that controls both the forget gate and the input gate.
+It also includes a reset gate that controls what should be used from the previous hidden state to compute new hidden state content.
+Finally, instead of an output gate, which is present in the LSTM, the GRU outputs the entire state vector at every time step\cite{RNNPaper} \cite{hands-onML}.
+
 Although LSTM and GRU models show significant improvements over regular RNN models in their ability to learn long term patterns, they are still inefficient at learning longer patterns as their inherent sequential nature can cause memory constraints\cite{AttentionIsAllYouNeed}. 

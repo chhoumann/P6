@@ -32,12 +32,12 @@
 
 In this section, we start by presenting the datasets used to conduct the experiments.
 Afterwards, we list the baselines used in the experiments and describe general challenges involved in time series forecasting.
-Finally, we present the results from the experiments and analyse them.
+Finally, we present the results from the experiments and analyze them.
 
 \subsection{Datasets}
-The following datasets have been used when conducting experiments on the various machine learning algorithms used in this paper.
+The following datasets have been used when conducting experiments on the various models used in this paper.
 \begin{itemize}
-    \item \textbf{Austin}\cite{HistoricalHourlyWeather}: The raw dataset over weather features in Austin, Texas covers a 4 year period from 2013 to 2017 with data logged once per day in the period.
+    \item \textbf{Austin}\cite{HistoricalHourlyWeather}: The raw dataset over weather features in Austin, Texas covers a four-year period from 2013 to 2017 with data logged once per day in the period.
     \item \textbf{Bangladesh}\cite{BangladeshWeatherDataset}: The weather dataset for Bangladesh was collected during the period 1901 to 2015 and shows the average monthly temperature during this period. 
     \item \textbf{Delhi}\cite{DailyClimateTime}: The dataset covers weather data for Delhi, India from 2013 to 2017 with one day between each logged data point.
     \item \textbf{Szeged}\cite{WeatherSzeged}: The raw dataset covers weather data for Szeged, Hungary from 2006 to 2016 generated every hour over a 10-year span.
@@ -58,37 +58,40 @@ Szeged     & 96453                          & 1 Hour                            
 \end{tabular}
 \end{table*}
 
-We have used the root-mean-square-error (RMSE) as the loss function to compare the chosen machine learning algorithms. The formula for computing the RMSE can be seen below: 
+We have used the root-mean-square-error (RMSE) as the loss function to compare the chosen models.
+The formula for computing the RMSE can be seen below: 
 $$RMSE = \sqrt{\frac 1 n \displaystyle\sum_{i=1}^n(Y_i - \hat{Y_i})^2}$$
+
+where $Y$ is the observed target feature values, and $\hat{Y}$ is the predicted target feature value.
 
 \subsection{Baselines}
 
-These models are taken from statistical, machine learning, and deep learning to get a better overview of how the transformer's results compare with other well-known models.
+These models are taken from statistics and machine learning to get a better overview of how the transformer's results compare with other well-known models.
 \begin{itemize}
-    \item \textbf{ARIMA}\cite{ARIMA-book}: A generalisation of the ARMA model that can be fitted to data in order to predict future steps.
-    \item \textbf{GRU}\cite{GRU-paper}: A RNN model similar to LSTM but with a forget-gate added instead of an output gate.
+    \item \textbf{ARIMA}\cite{ARIMA-book}: A generalization of the ARMA model that can be fitted to data in order to predict future steps.
+    \item \textbf{GRU}\cite{GRU-paper}: An RNN model similar to LSTM but with a forget gate added instead of an output gate.
     \item \textbf{LinReg}: A standard linear regression model.
-    \item \textbf{LSTM}\cite{LSTM-paper}: A model modifying the RNN memory system in order to combat the vanishing gradient problem.
+    \item \textbf{LSTM}\cite{LSTMPaper}: A model modifying the RNN memory system in order to combat its long term dependency issues.
     \item \textbf{MLP}\cite{MLP-paper}: The classic neural network used for regression prediction problems.
     \item \textbf{RNN}\cite{RNN-paper}: The standard recurrent neural network model.
-    \item \textbf{Transformer}\cite{AttentionIsAllYouNeed}: A state of art model used in NLP, modified to work for time series forecasting.
 \end{itemize}
 
 \subsection{Results}\label{sec:results}
 Table \ref{tab:ResultsTable} summarizes the best performances of the tested models for each of the five datasets used. 
-As can be seen, the transformer performs the best in all datasets. The reason for this is two-fold. 
-The first reason is the time embedding component in the transformer, which allows the transformer to account for both periodic and non-periodic data and thus account for seasonality in the data. 
-The second reason is the multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
+As can be seen, the transformer performs the best in all datasets. 
+There are several probable reasons for this. 
+The time embedding component in the transformer allows it to account for both periodic and non-periodic data, and thus account for seasonality in the data. 
+The multi-head attention mechanism which, combined with the time embedding, allows the transformer to account for long-term dependencies. Models such as ARIMA can account for seasonality but struggles with long-term dependencies. 
 
-RNNs are able to account for seasonality, but as described in section \ref{subsec:RNNModels}, they are expected to falter with long time steps due to the vanishing and exploding gradient problem. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure of the data or tuning of the hyperparameters, however, we will look into this issue in our future work.
+RNNs are able to account for seasonality, but as described in section \ref{subsec:RNNModels}, they are expected to falter over long time steps due to the vanishing and exploding gradient problems. Table \ref{tab:ResultsTable} does, however, show that RNN performs well on all datasets except for the Delhi dataset. This issue may be related to the structure or size of the data, or tuning of the hyperparameters, however, we will look into this behavior in our future work.
 
-LSTMs and GRUs can also account for seasonality but are expected to perform better with long time steps than RNNs. 
+LSTMs and GRUs can also account for seasonality but are expected to perform better over long time steps than RNNs. 
 However, the LSTM model in our experiment is outperformed by the RNN model on all datasets except for the Delhi dataset.
 We expected LSTM to perform similarly to GRU and consequently, we expected it to outperform the RNN model.
 
 Linear regression and MLP are behaving as expected.
 
-Standard deviation normalization was performed to account for the variability in the temperature depending on the region of the world in which the temperature data is captured. 
+Standard deviation normalization was performed to account for the variability in the temperature depending on the region of the world in which the temperature data was captured. 
 For example, data captured close to the equator may be higher and therefore the RMSE is also amplified in equal proportion. 
 In order to compute the values seen in table \ref{tab:ResultsTableSummed}, the model errors from table \ref{tab:ResultsTable} were divided by the standard deviation calculated for each dataset.
 The sum column shows the overall performance for each model, where the lowest number represents the best-performing model. 
