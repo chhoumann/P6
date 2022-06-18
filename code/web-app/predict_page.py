@@ -8,8 +8,32 @@ import torch.nn as nn
 from classes.lstm import Optimization
 from zipfile import ZipFile
 from pathlib import Path
+import numpy as np
+import pandas as pd
+import os, datetime
+import tensorflow as tf
+
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+from classes.transformer import Time2Vector, MultiAttention, SingleAttention, TransformerEncoder
 
 LAG_FEATURES = 10
+
+dataTrain = pd.read_csv("./data/DailyDelhiClimateTrain.csv")
+dataTest = pd.read_csv("./data/DailyDelhiClimateTest.csv")
+delhi = train_series = pd.concat([dataTrain, dataTest])[["meantemp"]]
+jena = pd.read_csv("./data/jena_climate_2009_2016.csv")[["T (degC)"]]
+austin = pd.read_csv("./data/austin_weather.csv")[["TempAvgF"]]
+bangladesh = pd.read_csv("./data/Temp_and_rain.csv")[["tem"]]
+szeged = pd.read_csv("./data/weatherHistory.csv")[["Temperature (C)"]]
+
+datasets = [
+    (austin, "TempAvgF", "Austin"),
+    (delhi, "meantemp", "Delhi"),
+    (jena, "T (degC)", "Jena"),
+    (bangladesh, "tem", "Bangladesh"),
+    (szeged, "Temperature (C)", "Szeged")
+]
+
 
 def load_model():
     models = {}
@@ -35,6 +59,51 @@ def load_model():
     with open('saved_arima.pkl', 'rb') as file:
         models['ARIMA'] = pickle.load(file)
 
+    models['Transformer'] = {}
+    for (data, key, city) in datasets:
+        model = tf.keras.models.load_model(f'./Transformer+TimeEmbedding_{city}.hdf5',
+                                           custom_objects={'Time2Vector': Time2Vector,
+                                                           'SingleAttention': SingleAttention,
+                                                           'MultiAttention': MultiAttention,
+                                                           'TransformerEncoder': TransformerEncoder})
+
+        from sklearn.model_selection import train_test_split
+        train, test = train_test_split(data, train_size=0.77, shuffle=False)
+
+        def generate_time_lags(df: pd.DataFrame, n_lags: int, col_name: str):
+            df_n = df.copy()
+            for n in range(1, n_lags + 1):
+                df_n[f"lag{n}"] = df_n[col_name].shift(n)
+            df_n = df_n.iloc[n_lags:]
+            return df_n
+
+        batch_size = 10
+        seq_len = 20
+
+        d_k = 40
+        d_v = 40
+        n_heads = 6
+        ff_dim = 40
+
+        lagged_train = generate_time_lags(train, LAG_FEATURES, key)
+        train_data = lagged_train.values
+
+        X_train, y_train = [], []
+        for i in range(seq_len, len(train_data)):
+            X_train.append(train_data[i - seq_len:i])  # Chunks of training data with a length of 128 df-rows
+            y_train.append(train_data[:, 0][i])  # Value of 1st column (meantemp) of df-row 128+1
+        X_train, y_train = np.array(X_train), np.array(y_train)
+
+        models['Transformer'][city] = {
+            'X': X_train,
+            'key': key,
+            'model': model
+        }
+
+    # with open('saved_transformer.pkl', 'rb') as file:
+    #     models['Transformer'] = pickle.load(file)
+    #     print(models['Transformer'])
+
     return models
 
 loaded_Data = load_model()
@@ -58,7 +127,7 @@ def show_predict_page():
         "LSTM",
         "MLP",
         "RNN",
-        # "Transformer",
+        "Transformer",
     )
 
     city = st.selectbox("City", cities)
@@ -79,6 +148,8 @@ def show_predict_page():
             pred = pd.DataFrame([pred[i][0] for i in range(len(pred))])
         if model == "ARIMA":
             pred = run_model.predict()
+        if model == 'Transformer':
+            pred = run_model.predict(X)
 
         st.line_chart(pred)
 
